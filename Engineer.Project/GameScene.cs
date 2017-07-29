@@ -12,11 +12,15 @@ namespace Engineer.Project
 {
     public class GameScene : Scene2D
     {
+        private Movement Movement;
+        private Player Player1;
+        private Player Player2;
         public GameScene()
         {
             this._Name = "GameScene";
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);
-            Create(this);
+            
+            Create(this);            
         }
         private void KeyPress(object Sender, EventArguments E)
         {
@@ -28,7 +32,7 @@ namespace Engineer.Project
             }
         }
 
-        public static void Create(Scene2D CScene)
+        public  void Create(Scene2D CScene)
         {
             //DrawnSceneObject Back = CreateStaticSprite("Back", ResourceManager.Images["Back"], new Vertex(0, 0, 0), new Vertex(1920, 900, 0));
             //CScene.AddSceneObject(Back);
@@ -36,11 +40,15 @@ namespace Engineer.Project
             CScene.Data["Surface"] = Surface;
             CScene.AddSceneObject(Surface);
 
-            DrawnSceneObject Player = CreateStaticTile("Player", ResourceManager.Images["kuglica_01"], new Vertex(1920, 900, 0), new Vertex(1920, 1000, 0), true);
-            CScene.Data["Player"] = Player;
-            CScene.AddSceneObject(Player);
 
 
+            this.Player1=new Player(CScene);
+
+            this.Player2=new Player(CScene);
+
+            this.Movement = new Movement(Player1,Player2,CScene);
+
+           
             //DrawnSceneObject Floor = CreateStaticSprite("Floor", ResourceManager.Images["Ceiling"], new Vertex(Location - 250, 850, 0), new Vertex(250, 50, 0), true, Collision2DType.Focus);
             //CScene.AddSceneObject(Floor);
 
@@ -52,7 +60,8 @@ namespace Engineer.Project
             int Location = XLocation * 300;
             DrawnSceneObject Wall = CreateStaticTile("Wall", ResourceManager.Images["zid_01"], new Vertex(Location, Location, 0), new Vertex(100, 100, 0));
             CScene.AddSceneObject(Wall);
-
+            //DrawnSceneObject Player = CreateStaticTile("Player", ResourceManager.Images["kuglica_01"], new Vertex(100, 100, 0), new Vertex(100, 100, 0), true);
+            //CScene.AddSceneObject(Player);
         }
 
         public static DrawnSceneObject CreateStaticTile(string Name, System.Drawing.Bitmap Image, Vertex Positon, Vertex Size, bool Collision = false, Collision2DType ColType = Collision2DType.Focus)

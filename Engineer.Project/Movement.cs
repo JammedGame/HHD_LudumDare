@@ -30,6 +30,8 @@ namespace Engineer.Project
 
             this.CScene = CScene;
             this.CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdate);
+            this.CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
+            this.CScene.Events.Extern.KeyUp += new GameEventHandler(KeyUpEvent);            
         }       
         public void KeyDownEvent(Game G, EventArguments E)
         {
@@ -105,35 +107,35 @@ namespace Engineer.Project
         {
             if (_WDown)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - 5, 0);
+                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - 15, 0);
             }
             if (_ADown)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X-5, Player1.Visual.Translation.Y, 0);
+                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - 15, Player1.Visual.Translation.Y, 0);
             }
             if (_SDown)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + 5, 0);
+                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + 15, 0);
             }
             if (_DDown)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X+5, Player1.Visual.Translation.Y, 0);
+                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + 15, Player1.Visual.Translation.Y, 0);
             }
             if (_Num8)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - 5, 0);
+                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - 15, 0);
             }
             if (_Num4)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X-5, Player2.Visual.Translation.Y , 0);
+                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - 15, Player2.Visual.Translation.Y , 0);
             }
             if (_Num5)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + 5, 0);
+                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + 15, 0);
             }
             if (_Num6)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X+5, Player2.Visual.Translation.Y, 0);
+                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X+ 15, Player2.Visual.Translation.Y, 0);
             }
         }
     }

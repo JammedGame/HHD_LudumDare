@@ -11,6 +11,7 @@ namespace Engineer.Project
 {
     public class GameLogic
     {
+      
         private Game _Game;
         private ExternRunner _Runner;
         public GameLogic()
@@ -24,6 +25,7 @@ namespace Engineer.Project
             Menu.Data["Runner"] = this._Runner;
             this._Runner.SetWindowState(LocalSettings.State);
             this._Runner.Init(this._Game);
+            
         }
         public void Run()
         {
