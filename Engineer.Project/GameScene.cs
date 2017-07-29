@@ -18,11 +18,11 @@ namespace Engineer.Project
         public GameScene()
         {
             this._Name = "GameScene";
-            this.BackColor = Color.BlueViolet;
-            TiledImporter.Import(this, "Data/sample.tmx", 15, 15);
+            
             this.Player1 = new Player(this);
             this.Player2 = new Player(this);
             this.Movement = new Movement(Player1, Player2, this);
+            Level.Generate(this, 0, new Player[] {this.Player1, this.Player2});
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);                  
         }
         private void KeyPress(object Sender, EventArguments E)

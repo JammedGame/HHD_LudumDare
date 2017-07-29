@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Engineer.Project
 {
-    class Player:DrawnSceneObject
+    public class Player:DrawnSceneObject
     {
         public static int id=1;
         private int _Heat;                    
@@ -26,8 +26,6 @@ namespace Engineer.Project
             this.Visual = PlayerSprite;
             this.Visual.Scale = new Vertex(50, 50, 0);
             this.Visual.Translation = new Vertex(100*id, 100*id, 0);
-
-            CScene.AddSceneObject(this);
         }
 
         public int Heat
