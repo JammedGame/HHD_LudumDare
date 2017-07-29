@@ -60,6 +60,7 @@ namespace Engineer.Engine
             {
                 for (int j = 0; j < this._MapSize.Y; j++)
                 {
+                    if (this._MapMatrix[i, j] == -1) continue;
                     G.DrawImage(this._MapCollection.TileImages[this._MapMatrix[i, j]], i * this._FieldSize, j * this._FieldSize, this._FieldSize, this._FieldSize);
                 }
             }
