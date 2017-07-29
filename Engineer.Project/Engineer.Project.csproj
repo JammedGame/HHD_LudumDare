@@ -134,5 +134,11 @@
   <ItemGroup>
     <None Include="Resources\progressbar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kuglica_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zid_01.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

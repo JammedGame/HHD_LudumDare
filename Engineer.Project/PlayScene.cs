@@ -32,8 +32,10 @@ namespace Engineer.Project
 
         public static void CreateLevel(Scene2D CScene, int XLocation, int Length, int Level, int[] Enterances, bool[] Stairs, int Assets = 0)
         {
-            int LocationX = XLocation * 300;
-            int LocationY = XLocation * 300;
+            int Location = XLocation * 300;
+            DrawnSceneObject Wall = CreateStaticSprite("Wall", ResourceManager.Images["zid_01"], new Vertex(Location, Location, 0), new Vertex(30, 550, 0));
+            CScene.AddSceneObject(Wall);
+
         }
 
             public static DrawnSceneObject CreateStaticSprite(string Name, System.Drawing.Bitmap Image, Vertex Positon, Vertex Size, bool Collision = false, Collision2DType ColType = Collision2DType.Focus)
