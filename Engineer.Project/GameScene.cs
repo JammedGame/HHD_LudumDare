@@ -18,6 +18,7 @@ namespace Engineer.Project
         public GameScene()
         {
             this._Name = "GameScene";
+            this.BackColor = Color.BlueViolet;
             TiledImporter.Import(this, "Data/sample.tmx", 15, 15);
             this.Player1 = new Player(this);
             this.Player2 = new Player(this);

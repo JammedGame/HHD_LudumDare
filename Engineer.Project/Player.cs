@@ -24,7 +24,7 @@ namespace Engineer.Project
             PlayerSprite.SpriteSets.Add(Player);
 
             this.Visual = PlayerSprite;
-            this.Visual.Scale = new Vertex(100, 100, 0);
+            this.Visual.Scale = new Vertex(50, 50, 0);
             this.Visual.Translation = new Vertex(100*id, 100*id, 0);
 
             CScene.AddSceneObject(this);

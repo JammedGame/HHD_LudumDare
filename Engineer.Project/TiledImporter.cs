@@ -12,7 +12,7 @@ namespace Engineer.Project
 {
     public class TiledImporter
     {
-        private static int FieldSize = 150;
+        private static int FieldSize = 100;
         public static void Import(Scene2D Scene, string FilePath, int Width, int Height)
         {
             var UserInfos = XDocument.Load(FilePath).Descendants("map")
