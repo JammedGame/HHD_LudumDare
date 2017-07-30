@@ -38,8 +38,12 @@ namespace Engineer.Project
         private bool P2CollLeft = false;
         private bool P2CollBottom = false;
 
+        private bool P1LeftP2 = false;
+        private bool P1RightP2 = false;
+        private bool P1TopP2 = false;
+        private bool P1BottomP2 = false;
+                
         private List<SceneObject> LSO = new List<SceneObject>();
-
 
         public Movement(Player P1, Player P2, Scene2D CScene)
         {
@@ -127,6 +131,7 @@ namespace Engineer.Project
         public void GameUpdate(Game G, EventArguments E)
         {
             Player1Coll();
+            Player2Coll();
 
             if (_WDown && !P1CollTop)
             {
@@ -161,9 +166,53 @@ namespace Engineer.Project
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
         }
-        public bool PlayerCollision()
+        public bool ChkPlayersCollision()
         {
             return Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Player2.Visual.Translation, Player2.Visual.Scale, Collision2DType.Radius);
+        }
+        public void PlayersCollision()
+        {
+            this.PCollision = ChkPlayersCollision();
+            if (PCollision)
+            {
+                float P1CentarX = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
+                float P1CentarY = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
+                float P2CentarX = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
+                float P2CentarY = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y / 2;
+
+                if ((P1CentarX + Player1.Visual.Scale.X / 2)-(P2CentarX - Player2.Visual.Scale.X / 2) < 0)
+                {
+                    P1LeftP2 = true;
+                }
+                else
+                {
+                    P1LeftP2 = false;
+                }
+                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
+                {
+                    P1RightP2 = true;
+                }
+                else
+                {
+                    P1TopP2 = false;
+                }
+                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
+                {
+                    P1RightP2 = true;
+                }
+                else
+                {
+                    P1RightP2 = false;
+                }
+                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
+                {
+                    P1RightP2 = true;
+                }
+                else
+                {
+                    P1RightP2 = false;
+                }
+            }
         }
         public bool WallCollisionP1(Player Player, DrawnSceneObject DSO)
         {
