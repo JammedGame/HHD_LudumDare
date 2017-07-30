@@ -124,67 +124,131 @@ namespace Engineer.Project
         {            
             if (_WDown && !P1Wall.Top && !P1Other.Top)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MoveSpeed, 0);
+                bool Able = true;
                 for(int i = 0; i < Boxes.Count; i++)
                 {
-                    if(((CollisionModel)Boxes[i].Data["P1Coll"]).Top) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Top && !((CollisionModel)Boxes[i].Data["WallColl"]).Top)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P1Coll"]).Top && ((CollisionModel)Boxes[i].Data["WallColl"]).Top)
+                    {
+                        Able = false;
+                    }
                 }
+                if(Able)this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MoveSpeed, 0);
             }
             if (_ADown && !P1Wall.Left && !P1Other.Left)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - MoveSpeed, Player1.Visual.Translation.Y, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Left) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Left && !((CollisionModel)Boxes[i].Data["WallColl"]).Left)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P1Coll"]).Left && ((CollisionModel)Boxes[i].Data["WallColl"]).Left)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
             if (_SDown && !P1Wall.Bottom && !P1Other.Bottom)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + MoveSpeed, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Bottom) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + MoveSpeed, 0);
+                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Bottom && !((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + MoveSpeed, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P1Coll"]).Bottom && ((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + MoveSpeed, 0);
             }
             if (_DDown && !P1Wall.Right && !P1Other.Right)
             {
-                this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Right) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    if (((CollisionModel)Boxes[i].Data["P1Coll"]).Right && !((CollisionModel)Boxes[i].Data["WallColl"]).Right)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P1Coll"]).Right && ((CollisionModel)Boxes[i].Data["WallColl"]).Right)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
             if (_Num8 && !P2Wall.Top && !P2Other.Top)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && !((CollisionModel)Boxes[i].Data["WallColl"]).Top)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && ((CollisionModel)Boxes[i].Data["WallColl"]).Top)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
             }
             if (_Num4 && !P2Wall.Left && !P2Other.Left)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Left) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Left && !((CollisionModel)Boxes[i].Data["WallColl"]).Left)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Left && ((CollisionModel)Boxes[i].Data["WallColl"]).Left)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
             if (_Num5 && !P2Wall.Bottom && !P2Other.Bottom)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Bottom) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + MoveSpeed, 0);
+                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Bottom && !((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + MoveSpeed, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Bottom && ((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
             }
             if (_Num6 && !P2Wall.Right && !P2Other.Right)
             {
-                this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
+                bool Able = true;
                 for (int i = 0; i < Boxes.Count; i++)
                 {
-                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Right) Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    if (((CollisionModel)Boxes[i].Data["P2Coll"]).Right && !((CollisionModel)Boxes[i].Data["WallColl"]).Right)
+                    {
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                    }
+                    else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Right && ((CollisionModel)Boxes[i].Data["WallColl"]).Right)
+                    {
+                        Able = false;
+                    }
                 }
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
             PlayersCollision();
         }
@@ -209,6 +273,11 @@ namespace Engineer.Project
                 Boxes[i].Data["P2Coll"] = new CollisionModel();
                 New = Collision2D.RadiusRectangularModel(Player2.Visual.Translation, Player2.Visual.Scale, Boxes[i].Visual.Translation, Boxes[i].Visual.Scale);
                 Boxes[i].Data["P2Coll"] = CombineModels((CollisionModel)Boxes[i].Data["P2Coll"], New);
+                for (int j = 0; j < LSO.Count; j++)
+                {
+                    New = Collision2D.RadiusRectangularModel(Boxes[i].Visual.Translation, Boxes[i].Visual.Scale, LSO[j].Visual.Translation, LSO[j].Visual.Scale);
+                    Boxes[i].Data["WallColl"] = CombineModels((CollisionModel)Boxes[i].Data["WallColl"], New);
+                }
             }
         }
         private CollisionModel CombineModels(CollisionModel Old, CollisionModel New)

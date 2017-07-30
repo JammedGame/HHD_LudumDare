@@ -36,7 +36,6 @@ namespace Engineer.Project
             {
                 ExternRunner Runner = (ExternRunner)this.Data["Runner"];
                 Runner.SwitchScene("Menu", false);
-                
             }
         }
     }
