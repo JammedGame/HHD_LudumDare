@@ -26,6 +26,18 @@ namespace Engineer.Project
                 GenerateLever(Scene, 3, 8);
                 GenerateDoor(Scene, 2, 6);
             }
+            if (Index == 1)
+            {
+                TiledImporter.Import(Scene, "Data/untitled1.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+
+                GenerateBox(Scene, 3, 3);
+                GenerateLever(Scene, 3, 8);
+                GenerateDoor(Scene, 2, 6);
+            }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
         {

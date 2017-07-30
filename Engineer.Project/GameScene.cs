@@ -31,7 +31,7 @@ namespace Engineer.Project
         {
             this._Player1 = new Player(this);
             this._Player2 = new Player(this);
-            Level.Generate(this, 0, new Player[] { this._Player1, this._Player2 });
+            Level.Generate(this, 1, new Player[] { this._Player1, this._Player2 });
             this._Movement = new Movement(_Player1, _Player2, this);
             ZoomManager ZM = new ZoomManager(this);
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);

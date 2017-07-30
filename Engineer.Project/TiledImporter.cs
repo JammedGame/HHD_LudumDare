@@ -22,8 +22,8 @@ namespace Engineer.Project
         {
             var UserInfos = XDocument.Load(FilePath).Descendants("map")
             .Select(d => d.Elements().ToDictionary(e => e.Name.LocalName, e => (string)e)).ToList();
-            int[,] Indices = new int[Width, Height];
-            int[,] Collision = new int[Width, Height];
+            int[,] Indices = new int[Height, Width];
+            int[,] Collision = new int[Height, Width];
             foreach (var UI in UserInfos)
             {
                 foreach (var Item in UI)
@@ -62,7 +62,7 @@ namespace Engineer.Project
             {
                 for (int j = 0; j < Height; j++)
                 {
-                    if (Collision[i, j] == 0) GenerateCollider(Scene, Collision, i, j, Width, Height);
+                    if (Collision[i, j] == 0) GenerateCollider(Scene, Collision, i, j, Height, Width);
                 }
             }
             for (int i = 0; i < ColliderColleciton.Count; i++)
@@ -108,7 +108,7 @@ namespace Engineer.Project
                 bool Viable = true;
                 for (int j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++)
                 {
-                    if (Collider[j, i] == 1)
+                    if (Collider[j, i] >= 1)
                     {
                         Viable = false;
                     }
@@ -125,7 +125,7 @@ namespace Engineer.Project
                 bool Viable = true;
                 for (int j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++)
                 {
-                    if (Collider[j, i] == 1)
+                    if (Collider[j, i] >= 1)
                     {
                         Viable = false;
                     }
