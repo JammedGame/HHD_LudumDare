@@ -10,6 +10,11 @@ using System.Xml.Linq;
 
 namespace Engineer.Project
 {
+    public class CollisionElement
+    {
+        public Point Location;
+        public Point Size;
+    }
     public class TiledImporter
     {
         private static int FieldSize = 100;
@@ -18,6 +23,7 @@ namespace Engineer.Project
             var UserInfos = XDocument.Load(FilePath).Descendants("map")
             .Select(d => d.Elements().ToDictionary(e => e.Name.LocalName, e => (string)e)).ToList();
             int[,] Indices = new int[Width, Height];
+            int[,] Collision = new int[Width, Height];
             foreach (var UI in UserInfos)
             {
                 foreach (var Item in UI)
@@ -31,14 +37,37 @@ namespace Engineer.Project
                             for (int j = 0; j < Height; j++)
                             {
                                 int Current = Convert.ToInt32(Values[Index]) - 1;
-                                if (Current > -1) CreateCollisionTile(Scene, j, i); 
                                 Indices[j, i] = Current;
                                 Index++;
                             }
                         }
-                        break;
+                    }
+                    if (Item.Key == "collision")
+                    {
+                        string[] Values = Item.Value.Replace("\n", "").Split(',');
+                        int Index = 0;
+                        for (int i = 0; i < Width; i++)
+                        {
+                            for (int j = 0; j < Height; j++)
+                            {
+                                Collision[j, i] = Convert.ToInt32(Values[Index]);
+                                Index++;
+                            }
+                        }
                     }
                 }
+            }
+            ColliderColleciton = new List<CollisionElement>();
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    if (Collision[i, j] == 0) GenerateCollider(Scene, Collision, i, j, Width, Height);
+                }
+            }
+            for (int i = 0; i < ColliderColleciton.Count; i++)
+            {
+                CreateCollisionTile(Scene, ColliderColleciton[i].Location.X, ColliderColleciton[i].Location.Y, ColliderColleciton[i].Size.X, ColliderColleciton[i].Size.Y);
             }
             TileCollection Collection = new TileCollection();
             Collection.TileImages.Add(ResourceManager.Images["zidici_2"]);
@@ -49,11 +78,81 @@ namespace Engineer.Project
             DrawnSceneObject DSO = new DrawnSceneObject("Map", Map);
             Scene.AddSceneObject(DSO);
         }
+        private static List<CollisionElement> ColliderColleciton;
+        private static void GenerateCollider(Scene2D Scene, int[,] Collider, int X, int Y, int Width, int Height)
+        {
+            CollisionElement Element = new CollisionElement();
+            Element.Location.X = X;
+            Element.Location.Y = Y;
+            Element.Size.X = 1;
+            Element.Size.Y = 1;
+            for (int i = X-1; i >= 0; i--)
+            {
+                if (Collider[i, Y] == 0)
+                {
+                    Element.Location.X = i;
+                    Element.Size.X++;
+                }
+                else break;
+            }
+            for (int i = X + 1; i < Width; i++)
+            {
+                if (Collider[i, Y] == 0)
+                {
+                    Element.Size.X++;
+                }
+                else break;
+            }
+            for (int i = Y - 1; i >= 0; i--)
+            {
+                bool Viable = true;
+                for (int j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++)
+                {
+                    if (Collider[j, i] == 1)
+                    {
+                        Viable = false;
+                    }
+                }
+                if (Viable)
+                {
+                    Element.Location.Y = i;
+                    Element.Size.Y++;
+                }
+                else break;
+            }
+            for (int i = Y + 1; i < Height; i++)
+            {
+                bool Viable = true;
+                for (int j = Element.Location.X; j < Element.Location.X + Element.Size.X; j++)
+                {
+                    if (Collider[j, i] == 1)
+                    {
+                        Viable = false;
+                    }
+                }
+                if (Viable)
+                {
+                    Element.Size.Y++;
+                }
+                else break;
+            }
+            bool New = true;
+            for(int i = 0; i < ColliderColleciton.Count; i++)
+            {
+                if (ColliderColleciton[i].Location.X == Element.Location.X &&
+                    ColliderColleciton[i].Location.Y == Element.Location.Y &&
+                    ColliderColleciton[i].Size.X == Element.Size.X &&
+                    ColliderColleciton[i].Size.Y == Element.Size.Y) New = false;
+            }
+            if (New) ColliderColleciton.Add(Element);
+        }
         private static TileCollection EmptyCollection = new TileCollection();
-        private static void CreateCollisionTile(Scene2D Scene, int X, int Y)
+        private static void CreateCollisionTile(Scene2D Scene, int X, int Y, int XSize, int YSize)
         {
             Tile NewTile = new Tile();
+            //NewTile.Paint = Color.Red;
             NewTile.Translation = new Vertex(X * TiledImporter.FieldSize, Y * TiledImporter.FieldSize, 0);
+            NewTile.Scale = new Vertex(XSize * TiledImporter.FieldSize, YSize * TiledImporter.FieldSize, 1);
             DrawnSceneObject DSO = new DrawnSceneObject("Collider", NewTile);
             DSO.Data["Collision"] = Collision2DType.Rectangular;
             Scene.AddSceneObject(DSO);
