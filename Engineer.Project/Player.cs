@@ -11,16 +11,17 @@ namespace Engineer.Project
     public class Player:DrawnSceneObject
     {
         public static int id=1;
-        private int _Heat;
-        private int MaxHeat;
+        private double Heat;
+        private double MaxHeat;
 
         private Scene2D Scene;
         private Sprite HealthBar;
 
+
         public Player(Scene2D CScene)
         {
             this.Scene = CScene;
-            MaxHeat = _Heat = 1000;
+            MaxHeat = Heat = 1000;
 
             //DrawnSceneObject Player = GameScene.CreateStaticTile("Player"+id++, ResourceManager.Images["kuglica_01"], new Vertex(100*id, 100 * id, 0), new Vertex(100 , 100 , 0), true);
             SpriteSet Player = new SpriteSet("Player" + id);
@@ -34,10 +35,17 @@ namespace Engineer.Project
             this.Visual.Translation = new Vertex(100 * id, 100 * id, 0);
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdate);
 
+            id += 1;
 
             this.Data["Player"] = true;
 
-            DrawnSceneObject HealthBar = GameHelpers.createSprite("progressbar", new Vertex(20, 20, 0), new Vertex(300, 40, 0));
+            float Right = 20;
+            if (id == 2)
+            {
+                Right = 500;
+            }
+
+            DrawnSceneObject HealthBar = GameHelpers.createSprite("progressbar", new Vertex(Right, 20, 0), new Vertex(300, 40, 0));
 
             this.HealthBar = (Sprite) HealthBar.Visual;
             this.HealthBar.Fixed = true;
@@ -46,35 +54,69 @@ namespace Engineer.Project
 
         }
 
-        public int Heat
-        {
-            get { return _Heat; }
-            set { _Heat = value; }
-        }
-
+     
         public void GameUpdate(Game G, EventArguments E)
         {
-            if (Scene.GetObjectsWithData("HeatSource").Count > 0)
+
+            foreach (SceneObject HeatSource in Scene.GetObjectsWithData("HeatSource"))
             {
-
-            }
-            else if (Scene.GetObjectsWithData("ColdSource").Count > 0) {
-
-            } else {
-
-                List<SceneObject> Players = Scene.GetObjectsWithData("Player");
-
-                foreach(SceneObject Player in Players)
+                if (this.GetDistance((DrawnSceneObject)HeatSource) < 150)
                 {
-                    if (Player != this)
-                    {
-                        int b = 1;
-                    }
+                    Heat = Math.Min(Heat + 5, MaxHeat);
                 }
-
-                this._Heat -= 1;
             }
-            HealthBar.Scale = new Vertex(((float)_Heat / (float)MaxHeat) * 300.0f, HealthBar.Scale.Y, 0);
+
+            foreach (SceneObject HeatSource in Scene.GetObjectsWithData("ColdSource"))
+            {
+                if (this.GetDistance((DrawnSceneObject)HeatSource) < 150)
+                {
+                    Heat -= 3;
+                }
+            }
+
+            List<SceneObject> Players = Scene.GetObjectsWithData("Player");
+
+            foreach(SceneObject SceneObj in Players)
+            {
+                Player Player = (Player)SceneObj;
+                if (Player != this)
+                {
+                    double distance = Player.GetDistance(this);
+
+                    distance = Math.Max(0, distance - 150);
+
+                    if (distance == 0)
+                    {
+                        double CommonHeat = (Player.Heat + this.Heat) / 2;
+                        if (this.Heat > CommonHeat)
+                        {
+                            double MyNewHeat = Math.Max(CommonHeat, this.Heat - 1);
+                            double ILose = this.Heat - MyNewHeat;
+                            Player.Heat += ILose;
+                            this.Heat = MyNewHeat;
+
+                        }
+                       
+                    }
+                    
+         
+
+                    Heat -= distance / 150;
+
+                }
+            }
+
+
+            HealthBar.Scale = new Vertex(((float)Heat / (float)MaxHeat) * 300.0f, HealthBar.Scale.Y, 0);
+
+
+            Heat = Math.Max(0, Heat);
+
+            if (Heat == 0)
+            {
+                // Mreo si
+
+            }
         }
 
     }

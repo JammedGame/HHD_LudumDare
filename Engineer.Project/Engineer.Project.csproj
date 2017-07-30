@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -171,4 +172,184 @@
     <None Include="Resources\zidici 2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8828984F-BB1E-4071-A075-DC648E3AE849}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Engineer.Project</RootNamespace>
+    <AssemblyName>Engineer.Project</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameLogic.cs" />
+    <Compile Include="GameScene.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="LoadingScene.cs" />
+    <Compile Include="LocalSettings.cs" />
+    <Compile Include="Mechanics.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Movement.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManager.cs" />
+    <Compile Include="TiledImporter.cs" />
+    <Compile Include="ZoomManager.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engineer.Data\Engineer.Data.csproj">
+      <Project>{27001881-9739-4d9f-8bbe-57afd825996a}</Project>
+      <Name>Engineer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Draw\Engineer.Draw.csproj">
+      <Project>{cb524cc3-ddad-4e7f-8112-253896a2857c}</Project>
+      <Name>Engineer.Draw</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Engine.IO\Engineer.Engine.IO.csproj">
+      <Project>{f07efd68-8268-436a-8917-95284792bad5}</Project>
+      <Name>Engineer.Engine.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Engine\Engineer.Engine.csproj">
+      <Project>{efb51f33-46a8-4367-a8a3-9e647ca6bbe7}</Project>
+      <Name>Engineer.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.IO\Engineer.IO.csproj">
+      <Project>{e609ebc6-3b93-4386-a4a2-f96c00b376e7}</Project>
+      <Name>Engineer.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Mathematics\Engineer.Mathematics.csproj">
+      <Project>{c808fad5-1905-4463-8f73-d8f3bb19eeb6}</Project>
+      <Name>Engineer.Mathematics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.OpenGL\Engineer.Draw.OpenGL.csproj">
+      <Project>{71f8aad9-38bc-4115-aefb-350ccbf9d06f}</Project>
+      <Name>Engineer.Draw.OpenGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engineer.Runner\Engineer.Runner.csproj">
+      <Project>{938502d1-1b08-480a-b631-bcab1e67a298}</Project>
+      <Name>Engineer.Runner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\progress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\progressbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kuglica_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zid_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zid_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kutija 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vatra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator100x100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vrata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zidici 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zidici 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lever_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lever_up.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+>>>>>>> df229e8cc8654c0848533737fbc6e4148e119dc3
 </Project>

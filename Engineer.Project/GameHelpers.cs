@@ -22,8 +22,8 @@ namespace Engineer.Project
             SomeSpriteSet.Sprite.Add(ResourceManager.Images[Image]);
             Sprite SomeSprite = new Sprite();
             SomeSprite.SpriteSets.Add(SomeSpriteSet);
-            SomeSprite.Scale = new Vertex(300, 40, 0);
-            SomeSprite.Translation = new Vertex(20, 20, 0);
+            SomeSprite.Scale = new Vertex(size.X, size.Y, 0);
+            SomeSprite.Translation = new Vertex(position.X, position.Y, 0);
 
             DrawnSceneObject DrawnObject = new DrawnSceneObject();
             DrawnObject.Visual = SomeSprite;

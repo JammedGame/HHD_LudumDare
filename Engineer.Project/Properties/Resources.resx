@@ -151,7 +151,7 @@
   <data name="ventilator100x100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ventilator100x100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vrata" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="door" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vrata.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="zid_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -165,5 +165,11 @@
   </data>
   <data name="zidici_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zidici 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lever_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lever_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lever_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lever_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
