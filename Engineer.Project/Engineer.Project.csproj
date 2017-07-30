@@ -148,5 +148,20 @@
   <ItemGroup>
     <None Include="Resources\zid_08.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kutija 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vatra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator100x100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vrata.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

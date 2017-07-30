@@ -1,4 +1,5 @@
 ﻿using Engineer.Engine;
+using Engineer.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,6 +21,20 @@ namespace Engineer.Project
                 Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
+
+                DrawnSceneObject Box = new DrawnSceneObject();
+
+                SpriteSet Boxset = new SpriteSet("Box");
+                Boxset.Sprite.Add(ResourceManager.Images["kutija_3"]);
+
+                Sprite BoxSprite = new Sprite();
+                BoxSprite.SpriteSets.Add(Boxset);
+
+                Box.Visual = BoxSprite;
+                Box.Visual.Scale = new Vertex(50, 50, 0);
+                Box.Visual.Translation = new Vertex(400, 200, 0);
+
+                Scene.AddSceneObject(Box);
             }
         }
     }
