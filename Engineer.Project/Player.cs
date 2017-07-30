@@ -2,6 +2,7 @@
 using Engineer.Mathematics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,22 @@ namespace Engineer.Project
 
         private Scene2D Scene;
         private Sprite HealthBar;
+        private Sprite PlayerGlow;
 
 
         public Player(Scene2D CScene)
         {
+            if(PlayerGlow == null)
+            {
+                SpriteSet GlowSet = new SpriteSet("Glow");
+                GlowSet.Sprite.Add(ResourceManager.Images["glow"]);
+                PlayerGlow = new Sprite();
+                PlayerGlow.SpriteSets.Add(GlowSet);
+                PlayerGlow.Translation = new Vertex(-120, -120, 0);
+                PlayerGlow.Scale = new Vertex(300, 300, 1);
+                PlayerGlow.Paint = Color.FromArgb(204,0,0);
+            }
+
             this.Scene = CScene;
             MaxHeat = Heat = 1000;
 

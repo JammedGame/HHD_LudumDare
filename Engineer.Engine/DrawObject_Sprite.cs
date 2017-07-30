@@ -84,6 +84,7 @@ namespace Engineer.Engine
             this._SpriteSets = new List<SpriteSet>();
             this.Scale = new Mathematics.Vertex(100,100,1);
             this._SubSprites = new List<Sprite>();
+            this._Paint = Color.White;
         }
         public Sprite(Sprite S) : base(S)
         {
@@ -96,6 +97,7 @@ namespace Engineer.Engine
             {
                 _SubSprites.Add(new Sprite(S.SubSprites[i]));
             }
+            this._Paint = S._Paint;
         }
         public List<Bitmap> CollectiveLists()
         {

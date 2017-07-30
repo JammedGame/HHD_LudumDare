@@ -276,7 +276,9 @@ namespace Engineer.Draw
                     this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
                     this._CurrentRenderer.RenderImage(CurrentSprite.SubSprites[i].ID, CurrentSprite.SubSprites[i].CollectiveLists(), (CurrentSprite.SubSprites[i].CollectiveLists().Count > 0) ? CurrentSprite.Index() : -1, CurrentSprite.SubSprites[i].Modified, CurrentSprite.Flipped);
                     CurrentSprite.SubSprites[i].Modified = false;
+                    this._CurrentRenderer.SetSurface(new float[] {1,1,1,1});
                 }
+                this._CurrentRenderer.SetSurface(new float[] { 1, 1, 1, 1 });
             }
             this._Matrix.PopMatrix();
         }
