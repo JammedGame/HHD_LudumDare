@@ -53,7 +53,7 @@ namespace Engineer.Project
 
         public Movement(Player P1, Player P2, Scene2D CScene)
         {
-            this.MoveSpeed = 1;
+            this.MoveSpeed = 5;
             this.Player1 = P1;
             this.Player2 = P2;
 
