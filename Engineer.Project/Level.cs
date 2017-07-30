@@ -27,18 +27,16 @@ namespace Engineer.Project
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
         {
-            DrawnSceneObject Box = new DrawnSceneObject();
-
             SpriteSet Boxset = new SpriteSet("Box");
             Boxset.Sprite.Add(ResourceManager.Images["kutija_3"]);
 
             Sprite BoxSprite = new Sprite();
             BoxSprite.SpriteSets.Add(Boxset);
 
-            Box.Visual = BoxSprite;
+            DrawnSceneObject Box = new DrawnSceneObject("Box", BoxSprite);
             Box.Visual.Scale = new Vertex(100, 100, 0);
             Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
-            Box.Data["Collision"] = true;
+            Box.Data["Box"] = true;
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
 
