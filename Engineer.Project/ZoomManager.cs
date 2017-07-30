@@ -31,6 +31,12 @@ namespace Engineer.Project
             Vertex Median = ((P1 + P2) * 0.5f).ToVertex();
             Vertex Translation = new Vertex(-Median.X + _Runner.Width / 2, -Median.Y + _Runner.Height / 2, 0);
             this._Scene.Transformation.Translation = Translation;
+            if (Diff.X > 650) this.XZoom = 1 + (Diff.X - 650) / 1000.0f;
+            else XZoom = 1;
+            if (Diff.Y > 400) this.YZoom = 1 - (Diff.Y - 400) / 1000.0f;
+            else YZoom = 1;
+            //if (XZoom < YZoom) this._Scene.Transformation.Scale = new Vertex(XZoom, XZoom, 1);
+            //else this._Scene.Transformation.Scale = new Vertex(YZoom, YZoom, 1);
         }
     }
 }
