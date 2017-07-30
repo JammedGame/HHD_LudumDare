@@ -273,6 +273,7 @@ namespace Engineer.Project
                 Boxes[i].Data["P2Coll"] = new CollisionModel();
                 New = Collision2D.RadiusRectangularModel(Player2.Visual.Translation, Player2.Visual.Scale, Boxes[i].Visual.Translation, Boxes[i].Visual.Scale);
                 Boxes[i].Data["P2Coll"] = CombineModels((CollisionModel)Boxes[i].Data["P2Coll"], New);
+                Boxes[i].Data["WallColl"] = new CollisionModel();
                 for (int j = 0; j < LSO.Count; j++)
                 {
                     New = Collision2D.RadiusRectangularModel(Boxes[i].Visual.Translation, Boxes[i].Visual.Scale, LSO[j].Visual.Translation, LSO[j].Visual.Scale);

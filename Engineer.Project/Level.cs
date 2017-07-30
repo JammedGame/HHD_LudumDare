@@ -23,6 +23,7 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[1]);
 
                 GenerateBox(Scene, 3, 3);
+                GenerateBox(Scene, 9, 3);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
