@@ -2,6 +2,7 @@
 using Engineer.Mathematics;
 using System;
 using System.Collections.Generic;
+using WebSocketSharp;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,11 +39,17 @@ namespace Engineer.Project
         private List<SceneObject> LSO = new List<SceneObject>();
         private List<SceneObject> Boxes = new List<SceneObject>();
 
+        private WebSocket server;
+        private Vertex Player2Pos;
+        private Vertex Player2TargetPos;
+
+
         public Movement(Player P1, Player P2, Scene2D CScene)
         {
             this.MoveSpeed = 5;
             this.Player1 = P1;
             this.Player2 = P2;
+            Player2Pos = Player2TargetPos = P2.Visual.Translation;
 
             this.CScene = CScene;
             this.CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdate);
@@ -51,6 +58,23 @@ namespace Engineer.Project
                         
             Boxes = CScene.GetObjectsWithData("Box");
             this.Mechanics = new Mechanics(CScene);
+
+            server = new WebSocket("ws://damirmiladinov.com:8888");
+            server.OnMessage += new EventHandler<MessageEventArgs>(MessageReceived);
+
+            server.Connect();
+            server.Send("Hello server");
+            
+        }
+        public void MessageReceived(object sender, MessageEventArgs e)
+        {
+            string PlayerPos = (string)e.Data;
+            string[] Positions = PlayerPos.Split('|');
+            if (Positions.Count() == 2)
+            {
+                Player2TargetPos = new Vertex(float.Parse(Positions[0]), float.Parse(Positions[1]), 0);
+            }
+
         }
         public void KeyDownEvent(Game G, EventArguments E)
         {
@@ -189,6 +213,42 @@ namespace Engineer.Project
                 }
                 if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
+
+
+
+            Vertex CurrentPos = Player2.Visual.Translation;
+
+            float tmpMoveX;
+            float TargetX;             
+            if (CurrentPos.X <= Player2TargetPos.X)
+            {
+                TargetX = Math.Min(Player2TargetPos.X, CurrentPos.X + MoveSpeed);
+            }
+            else
+            {
+                TargetX = Math.Max(Player2TargetPos.X, CurrentPos.X - MoveSpeed);
+            }
+            tmpMoveX = Math.Abs(TargetX - CurrentPos.X);
+
+            float tmpMoveY;
+            float TargetY;
+            if (CurrentPos.Y <= Player2TargetPos.Y)
+            {
+                TargetY = Math.Min(Player2TargetPos.Y, CurrentPos.Y + MoveSpeed);
+
+            }
+            else
+            {
+                TargetY = Math.Max(Player2TargetPos.Y, CurrentPos.Y - MoveSpeed);
+            }
+            tmpMoveY = Math.Abs(TargetY - CurrentPos.Y);
+
+
+            // Player2.Visual.Translation = new Vertex(TargetX, TargetY, 0);
+
+
+
+
             if (_Num8 && !P2Wall.Top && !P2Other.Top)
             {
                 bool Able = true;
@@ -196,14 +256,14 @@ namespace Engineer.Project
                 {
                     if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && !((CollisionModel)Boxes[i].Data["WallColl"]).Top)
                     {
-                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - tmpMoveY, 0);
                     }
                     else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && ((CollisionModel)Boxes[i].Data["WallColl"]).Top)
                     {
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
+                if (Able) Player2.Visual.Translation = Player2Pos = new Vertex(Player2Pos.X, Player2Pos.Y - MoveSpeed, 0);
             }
             if (_Num4 && !P2Wall.Left && !P2Other.Left)
             {
@@ -212,14 +272,14 @@ namespace Engineer.Project
                 {
                     if (((CollisionModel)Boxes[i].Data["P2Coll"]).Left && !((CollisionModel)Boxes[i].Data["WallColl"]).Left)
                     {
-                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X - tmpMoveX, Boxes[i].Visual.Translation.Y, 0);
                     }
                     else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Left && ((CollisionModel)Boxes[i].Data["WallColl"]).Left)
                     {
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
+                if (Able) Player2.Visual.Translation = Player2Pos = new Vertex(Player2Pos.X - MoveSpeed, Player2Pos.Y, 0);
             }
             if (_Num5 && !P2Wall.Bottom && !P2Other.Bottom)
             {
@@ -228,14 +288,14 @@ namespace Engineer.Project
                 {
                     if (((CollisionModel)Boxes[i].Data["P2Coll"]).Bottom && !((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
                     {
-                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + MoveSpeed, 0);
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y + tmpMoveY, 0);
                     }
                     else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Bottom && ((CollisionModel)Boxes[i].Data["WallColl"]).Bottom)
                     {
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
+                if (Able) Player2.Visual.Translation = Player2Pos = new Vertex(Player2Pos.X, Player2Pos.Y + MoveSpeed, 0);
             }
             if (_Num6 && !P2Wall.Right && !P2Other.Right)
             {
@@ -244,15 +304,19 @@ namespace Engineer.Project
                 {
                     if (((CollisionModel)Boxes[i].Data["P2Coll"]).Right && !((CollisionModel)Boxes[i].Data["WallColl"]).Right)
                     {
-                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + MoveSpeed, Boxes[i].Visual.Translation.Y, 0);
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X + tmpMoveX, Boxes[i].Visual.Translation.Y, 0);
                     }
                     else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Right && ((CollisionModel)Boxes[i].Data["WallColl"]).Right)
                     {
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
+                if (Able) Player2.Visual.Translation = Player2Pos = new Vertex(Player2Pos.X + MoveSpeed, Player2Pos.Y, 0);
             }
+
+
+            server.Send(Player2Pos.X + "|" + Player2Pos.Y);
+
             PlayersCollision();
 
             this.Mechanics.CheckLever(Player1,Player2);
