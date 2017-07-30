@@ -154,6 +154,55 @@ namespace Engineer.Mathematics
             }
             return Model;
         }
+        public static CollisionModel RadiusModel(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
+        {
+            CollisionModel Model = new CollisionModel();
+            if (!Collision2D.CheckRadiusCollision(Position, Scale, ColliderPosition, ColliderScale)) return Model;
+            Vertex Center = new Vertex(Position.X + Scale.X / 2, Position.Y + Scale.Y / 2, 0);
+            Vertex ColliderCenter = new Vertex(ColliderPosition.X + ColliderScale.X / 2, ColliderPosition.Y + ColliderScale.Y / 2, 0);
+            double Angle = VertexTransformer.Angle(Center, ColliderCenter);
+            if(Angle < 22.5f)
+            {
+                Model.Left = true;
+            }
+            else if (Angle < 67.5f)
+            {
+                Model.Top = true;
+                Model.Left = true;
+            }
+            else if (Angle < 112.5f)
+            {
+                Model.Top = true;
+            }
+            else if (Angle < 157.5f)
+            {
+                Model.Right = true;
+                Model.Top = true;
+            }
+            else if (Angle < 202.5f)
+            {
+                Model.Right = true;
+            }
+            else if (Angle < 247.5f)
+            {
+                Model.Right = true;
+                Model.Bottom = true;
+            }
+            else if (Angle < 292.5f)
+            {
+                Model.Bottom = true;
+            }
+            else if (Angle < 292.5f)
+            {
+                Model.Bottom = true;
+                Model.Left = true;
+            }
+            else
+            {
+                Model.Left = true;
+            }
+            return Model;
+        }
     }
     public class CollisionModel
     {
