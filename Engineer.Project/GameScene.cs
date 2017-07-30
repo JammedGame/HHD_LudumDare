@@ -29,6 +29,12 @@ namespace Engineer.Project
             this._Movement = new Movement(_Player1, _Player2, this);
             ZoomManager ZM = new ZoomManager(this);
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);
+
+            // Privremeno da ga napravimo
+
+            DrawnSceneObject Vatraaaa = GameHelpers.createSprite("progress", new Vertex(600, 600, 0), new Vertex(100, 100, 0));
+            Vatraaaa.Data["HeatSource"] = true;
+            this.AddSceneObject(Vatraaaa);
         }
         private void KeyPress(object Sender, EventArguments E)
         {
