@@ -24,6 +24,8 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[1]);
 
                 GenerateBox(Scene, 3, 3);
+                GenerateLever(Scene, 3, 8);
+                GenerateDoor(Scene, 2, 6);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
@@ -89,7 +91,4 @@ namespace Engineer.Project
             Scene.AddSceneObject(Door);
         }
     }
-}
-
-                GenerateLever(Scene,3,8);
-                GenerateDoor(Scene,2,6);
+}      
