@@ -11,7 +11,8 @@ namespace Engineer.Mathematics
         Radius,
         Rectangular,
         Focus,
-        Vertical
+        Vertical,
+        RadiusToRectangular
     }
     public class Collision2D
     {
@@ -22,6 +23,7 @@ namespace Engineer.Mathematics
             else if (Type == Collision2DType.Rectangular) return Collision2D.CheckRectangularCollision(Position, Scale, ColliderPosition, ColliderScale);
             else if (Type == Collision2DType.Focus) return Collision2D.CheckFocusCollision(Position, Scale, ColliderPosition, ColliderScale);
             else if (Type == Collision2DType.Vertical) return Collision2D.CheckVerticalCollision(Position, Scale, ColliderPosition, ColliderScale);
+            else if (Type == Collision2DType.RadiusToRectangular) return Collision2D.CheckRadiusToRectangularCollision(Position, Scale, ColliderPosition, ColliderScale);
             return false;
         }
         private static bool CheckRadiusCollision(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
@@ -59,5 +61,105 @@ namespace Engineer.Mathematics
         {
             return Point.X >= ColliderPosition.X && Point.X <= ColliderPosition.X + ColliderScale.X && Point.Y >= ColliderPosition.Y && Point.Y <= ColliderPosition.Y + ColliderScale.Y;
         }
+        private static bool CheckRadiusToRectangularCollision(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
+        {
+            bool InCollision = false;
+            VertexBuilder Center = new VertexBuilder(Position.X + Scale.X / 2, Position.Y + Scale.Y / 2, 0);
+            VertexBuilder ColliderPoint = new VertexBuilder(ColliderPosition.X, ColliderPosition.Y, 0);
+            double Distance = Math.Abs((Center - ColliderPoint).Length());
+            InCollision = InCollision || Distance < Scale.Y/2;
+            ColliderPoint = new VertexBuilder(ColliderPosition.X + ColliderScale.X, ColliderPosition.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            InCollision = InCollision || Distance < Scale.Y / 2;
+            ColliderPoint = new VertexBuilder(ColliderPosition.X + ColliderScale.X, ColliderPosition.Y + ColliderScale.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            InCollision = InCollision || Distance < Scale.Y / 2;
+            ColliderPoint = new VertexBuilder(ColliderPosition.X, ColliderPosition.Y + ColliderScale.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            InCollision = InCollision || Distance < Scale.Y / 2;
+            InCollision = InCollision || (Math.Abs(ColliderPosition.X - Center.X) < Scale.Y / 2 && Center.X < ColliderPosition.X);
+            InCollision = InCollision || (Math.Abs(ColliderPosition.X + ColliderScale.X - Center.X) < Scale.Y / 2 && Center.X > ColliderPosition.X + ColliderScale.X);
+            InCollision = InCollision || (Math.Abs(ColliderPosition.Y - Center.X) < Scale.Y / 2 && Center.Y < ColliderPosition.Y);
+            InCollision = InCollision || (Math.Abs(ColliderPosition.Y + ColliderScale.Y - Center.X) < Scale.Y / 2 && Center.Y > ColliderPosition.Y + ColliderScale.Y);
+            return InCollision;
+        }
+        public static CollisionModel RadiusRectangularModel(Vertex Position, Vertex Scale, Vertex ColliderPosition, Vertex ColliderScale)
+        {
+            CollisionModel Model = new CollisionModel();
+            if (!Collision2D.CheckRectangularCollision(Position, Scale, ColliderPosition, ColliderScale)) return Model;
+            VertexBuilder Center = new VertexBuilder(Position.X + Scale.X / 2, Position.Y + Scale.Y / 2, 0);
+            VertexBuilder ColliderPoint = new VertexBuilder(ColliderPosition.X, ColliderPosition.Y, 0);
+            double Distance = Math.Abs((Center - ColliderPoint).Length());
+            if(Distance < Scale.Y / 2)
+            {
+                if (Center.X > ColliderPosition.X) Model.Bottom = true;
+                else if (Center.Y > ColliderPosition.Y) Model.Right = true;
+                else
+                {
+                    Model.Right = true;
+                    Model.Bottom = true;
+                }
+            }
+            ColliderPoint = new VertexBuilder(ColliderPosition.X + ColliderScale.X, ColliderPosition.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            if (Distance < Scale.Y / 2)
+            {
+                if (Center.X < ColliderPosition.X + ColliderScale.X) Model.Bottom = true;
+                else if (Center.Y > ColliderPosition.Y) Model.Left = true;
+                else
+                {
+                    Model.Left = true;
+                    Model.Bottom = true;
+                }
+            }
+            ColliderPoint = new VertexBuilder(ColliderPosition.X + ColliderScale.X, ColliderPosition.Y + ColliderScale.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            if (Distance < Scale.Y / 2)
+            {
+                if (Center.X < ColliderPosition.X + ColliderScale.X) Model.Top = true;
+                else if (Center.Y < ColliderPosition.Y + ColliderScale.Y) Model.Left = true;
+                else
+                {
+                    Model.Left = true;
+                    Model.Top = true;
+                }
+            }
+            ColliderPoint = new VertexBuilder(ColliderPosition.X, ColliderPosition.Y + ColliderScale.Y, 0);
+            Distance = Math.Abs((Center - ColliderPoint).Length());
+            if (Distance < Scale.Y / 2)
+            {
+                if (Center.X > ColliderPosition.X) Model.Top = true;
+                else if (Center.Y < ColliderPosition.Y + ColliderScale.Y) Model.Right = true;
+                else
+                {
+                    Model.Right = true;
+                    Model.Top = true;
+                }
+            }
+            if (Math.Abs(ColliderPosition.X - Center.X) < Scale.Y / 2 && Center.X < ColliderPosition.X)
+            {
+                Model.Right = true;
+            }
+            if (Math.Abs((ColliderPosition.X + ColliderScale.X) - Center.X) < Scale.Y / 2 && Center.X > ColliderPosition.X + ColliderScale.X)
+            {
+                Model.Left = true;
+            }
+            if (Math.Abs(ColliderPosition.Y - Center.Y) < Scale.Y / 2 && Center.Y < ColliderPosition.Y)
+            {
+                Model.Bottom = true;
+            }
+            if (Math.Abs((ColliderPosition.Y + ColliderScale.Y) - Center.Y) < Scale.Y / 2 && Center.Y > ColliderPosition.Y + ColliderScale.Y)
+            {
+                Model.Top = true;
+            }
+            return Model;
+        }
+    }
+    public class CollisionModel
+    {
+        public bool Left;
+        public bool Right;
+        public bool Top;
+        public bool Bottom;
     }
 }

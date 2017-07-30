@@ -28,15 +28,8 @@ namespace Engineer.Project
         private bool P1WCollision = false;
         private bool P2WCollision = false;
 
-        private bool P1CollTop = false;
-        private bool P1CollRight = false;
-        private bool P1CollLeft = false;
-        private bool P1CollBottom = false;
-
-        private bool P2CollTop = false;
-        private bool P2CollRight = false;
-        private bool P2CollLeft = false;
-        private bool P2CollBottom = false;
+        private CollisionModel P1Wall = new CollisionModel();
+        private CollisionModel P2Wall = new CollisionModel();
 
         private bool P1LeftP2 = false;
         private bool P1RightP2 = false;
@@ -136,233 +129,60 @@ namespace Engineer.Project
         }
         public void GameUpdate(Game G, EventArguments E)
         {            
-            if (_WDown && !P1CollTop)
+            if (_WDown && !P1Wall.Top)
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MoveSpeed, 0);
             }
-            if (_ADown && !P1CollLeft)
+            if (_ADown && !P1Wall.Left)
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
-            if (_SDown && !P1CollBottom)
+            if (_SDown && !P1Wall.Bottom)
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + MoveSpeed, 0);
             }
-            if (_DDown && !P1CollRight)
+            if (_DDown && !P1Wall.Right)
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
-            if (_Num8 && !P2CollTop)
+            if (_Num8 && !P2Wall.Top)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
             }
-            if (_Num4 && !P2CollLeft)
+            if (_Num4 && !P2Wall.Left)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
-            if (_Num5 && !P2CollBottom)
+            if (_Num5 && !P2Wall.Bottom)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
             }
-            if (_Num6 && !P2CollRight)
+            if (_Num6 && !P2Wall.Right)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
-            Player1Coll();
-            Player2Coll();
+            PlayersCollision();
         }
-        public bool ChkPlayersCollision()
+        private void PlayersCollision()
         {
-            return Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Player2.Visual.Translation, Player2.Visual.Scale, Collision2DType.Radius);
-        }
-        public void PlayersCollision()
-        {
-            this.PCollision = ChkPlayersCollision();
-            if (PCollision)
+            this.P1Wall = new CollisionModel();
+            this.P2Wall = new CollisionModel();
+            for(int i = 0; i < LSO.Count; i++)
             {
-                float P1CentarX = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
-                float P1CentarY = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
-                float P2CentarX = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
-                float P2CentarY = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y / 2;
-
-                if ((P1CentarX + Player1.Visual.Scale.X / 2)-(P2CentarX - Player2.Visual.Scale.X / 2) < 0)
-                {
-                    P1LeftP2 = true;
-                }
-                else
-                {
-                    P1LeftP2 = false;
-                }
-                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
-                {
-                    P1RightP2 = true;
-                }
-                else
-                {
-                    P1RightP2 = false;
-                }
-                if ((P1CentarY + Player1.Visual.Scale.Y / 2) - (P2CentarY - Player2.Visual.Scale.Y / 2) < 0)
-                {
-                    P1TopP2 = true;
-                }
-                else
-                {
-                    P1TopP2 = false;
-                }
-                if ((P2CentarY + Player2.Visual.Scale.Y / 2) - (P1CentarY - Player1.Visual.Scale.Y / 2) < 0)
-                {
-                    P1BottomP2 = true;
-                }
-                else
-                {
-                    P1BottomP2 = false;
-                }
+                CollisionModel New = Collision2D.RadiusRectangularModel(Player1.Visual.Translation, Player1.Visual.Scale, LSO[i].Visual.Translation, LSO[i].Visual.Scale);
+                P1Wall = CombineModels(P1Wall, New);
+                New = Collision2D.RadiusRectangularModel(Player2.Visual.Translation, Player2.Visual.Scale, LSO[i].Visual.Translation, LSO[i].Visual.Scale);
+                P2Wall = CombineModels(P2Wall, New);
             }
         }
-        public bool WallCollisionP1(Player Player, DrawnSceneObject DSO)
+        private CollisionModel CombineModels(CollisionModel Old, CollisionModel New)
         {
-            return Collision2D.Check(Player.Visual.Translation, Player.Visual.Scale, DSO.Visual.Translation, DSO.Visual.Scale, Collision2DType.Rectangular);
+            CollisionModel Model = new CollisionModel();
+            Model.Left = Old.Left || New.Left;
+            Model.Right = Old.Right || New.Right;
+            Model.Top = Old.Top || New.Top;
+            Model.Bottom = Old.Bottom || New.Bottom;
+            return Model;
         }
-        public bool WallCollisionP2(Player Player, DrawnSceneObject DSO)
-        {
-            return Collision2D.Check(Player.Visual.Translation, Player.Visual.Scale, DSO.Visual.Translation, DSO.Visual.Scale, Collision2DType.Rectangular);
-        }
-        public List<DrawnSceneObject> P1FindWalls()
-        {
-            List<DrawnSceneObject> tempList = new List<DrawnSceneObject>();
-            for (int i = 0; i < LSO.Count; i++)
-            {
-                this.P1WCollision = WallCollisionP1(Player1, (DrawnSceneObject)LSO[i]);
-                if (P1WCollision)
-                {
-                    tempList.Add((DrawnSceneObject)LSO[i]);
-                }
-            }
-            return tempList;
-        }
-        public List<DrawnSceneObject> P2FindWalls()
-        {
-            List<DrawnSceneObject> tempList = new List<DrawnSceneObject>();
-            for (int i = 0; i < LSO.Count; i++)
-            {
-                this.P2WCollision = WallCollisionP2(Player2, (DrawnSceneObject)LSO[i]);
-                if (P2WCollision)
-                {
-                    tempList.Add((DrawnSceneObject)LSO[i]);
-                }
-            }
-            return tempList;
-        }
-        public void Player1Coll()
-        {
-            List<DrawnSceneObject> colList = new List<DrawnSceneObject>();
-            colList = P1FindWalls();
-            if (colList.Count > 0)
-            {
-                for (int i = 0; i < colList.Count; i++)
-                {
-                    LeftEdge = Player1.Visual.Translation.X;
-                    RightEdge = Player1.Visual.Translation.X+Player1.Visual.Scale.X;                    
-                    TopEdge = Player1.Visual.Translation.Y;
-                    BottomEdge = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y;
-                    
-                    if (RightEdge == colList[i].Visual.Translation.X && ((BottomEdge<= colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y && TopEdge>=colList[i].Visual.Translation.Y) || (BottomEdge >= colList[i].Visual.Translation.Y && TopEdge <= colList[i].Visual.Translation.Y) || (BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge < colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y)))
-                    {
-                        P1CollRight = true;
-                    }
-                    else
-                    {
-                        P1CollRight = false;
-                    }
-                    if (LeftEdge==colList[i].Visual.Translation.X +colList[i].Visual.Scale.X && ((TopEdge >= colList[i].Visual.Translation.Y && BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y )||(TopEdge<=colList[i].Visual.Translation.Y && BottomEdge >= colList[i].Visual.Translation.Y) ||(TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && BottomEdge > colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y)))
-                    {
-                        P1CollLeft = true;
-                    }
-                    else
-                    {
-                        P1CollLeft = false;
-                    }
-                    if (TopEdge == colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && ((LeftEdge>=colList[i].Visual.Translation.X && RightEdge<=colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)||(LeftEdge<=colList[i].Visual.Translation.X && RightEdge>=colList[i].Visual.Translation.X)||(LeftEdge<colList[i].Visual.Translation.X +colList[i].Visual.Scale.X && RightEdge>colList[i].Visual.Translation.X+colList[i].Visual.Scale.X)))
-                    {
-                        P1CollTop = true;
-                    }
-                    else
-                    {
-                        P1CollTop = false;
-                    }
-                    if (BottomEdge == colList[i].Visual.Translation.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)||(LeftEdge<=colList[i].Visual.Translation.X && RightEdge>=colList[i].Visual.Translation.X)||(LeftEdge<colList[i].Visual.Translation.X+colList[i].Visual.Scale.X && RightEdge>colList[i].Visual.Translation.X+colList[i].Visual.Scale.X)))
-                    {
-                        P1CollBottom = true;
-                    }
-                    else
-                    {
-                        P1CollBottom = false;
-                    }
-                }
-            }
-            else
-            {
-                P1CollBottom = false;
-                P1CollLeft = false;
-                P1CollRight = false;
-                P1CollTop = false;
-            }
-        }
-        public void Player2Coll()
-        {
-            List<DrawnSceneObject> colList = new List<DrawnSceneObject>();
-            colList = P2FindWalls();
-            if (colList.Count > 0)
-            {
-                for (int i = 0; i < colList.Count; i++)
-                {
-                    LeftEdge = Player2.Visual.Translation.X;
-                    RightEdge = Player2.Visual.Translation.X + Player2.Visual.Scale.X;
-                    TopEdge = Player2.Visual.Translation.Y;
-                    BottomEdge = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y;
-
-                    if (RightEdge == colList[i].Visual.Translation.X && ((BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge >= colList[i].Visual.Translation.Y) || (BottomEdge >= colList[i].Visual.Translation.Y && TopEdge <= colList[i].Visual.Translation.Y) || (BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y)))
-                    {
-                        P2CollRight = true;
-                    }
-                    else
-                    {
-                        P2CollRight = false;
-                    }
-                    if (LeftEdge == colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && ((TopEdge >= colList[i].Visual.Translation.Y && BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y) || (TopEdge <= colList[i].Visual.Translation.Y && BottomEdge >= colList[i].Visual.Translation.Y) || (TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y)))
-                    {
-                        P2CollLeft = true;
-                    }
-                    else
-                    {
-                        P2CollLeft = false;
-                    }
-                    if (TopEdge == colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) || (LeftEdge <= colList[i].Visual.Translation.X && RightEdge >= colList[i].Visual.Translation.X) || (LeftEdge < colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && RightEdge > colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)))
-                    {
-                        P2CollTop = true;
-                    }
-                    else
-                    {
-                        P2CollTop = false;
-                    }
-                    if (BottomEdge == colList[i].Visual.Translation.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) || (LeftEdge <= colList[i].Visual.Translation.X && RightEdge >= colList[i].Visual.Translation.X) || (LeftEdge < colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && RightEdge > colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)))
-                    {
-                        P2CollBottom = true;
-                    }
-                    else
-                    {
-                        P2CollBottom = false;
-                    }
-                }
-            }
-            else
-            {
-                P2CollBottom = false;
-                P2CollLeft = false;
-                P2CollRight = false;
-                P2CollTop = false;
-            }
-        }
-
     }
 }
