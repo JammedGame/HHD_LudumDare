@@ -41,7 +41,7 @@ namespace Engineer.Project
                 }
             }
             TileCollection Collection = new TileCollection();
-            Collection.TileImages.Add(ResourceManager.Images["zid_08"]);
+            Collection.TileImages.Add(ResourceManager.Images["zidici_2"]);
             TileMap Map = new TileMap();
             Map.FieldSize = TiledImporter.FieldSize;
             Map.MapCollection = Collection;

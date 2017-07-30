@@ -22,20 +22,27 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
-                DrawnSceneObject Box = new DrawnSceneObject();
-
-                SpriteSet Boxset = new SpriteSet("Box");
-                Boxset.Sprite.Add(ResourceManager.Images["kutija_3"]);
-
-                Sprite BoxSprite = new Sprite();
-                BoxSprite.SpriteSets.Add(Boxset);
-
-                Box.Visual = BoxSprite;
-                Box.Visual.Scale = new Vertex(50, 50, 0);
-                Box.Visual.Translation = new Vertex(400, 200, 0);
-
-                Scene.AddSceneObject(Box);
+                GenerateBox(Scene, 4, 3);
             }
+        }
+        public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
+        {
+            DrawnSceneObject Box = new DrawnSceneObject();
+
+            SpriteSet Boxset = new SpriteSet("Box");
+            Boxset.Sprite.Add(ResourceManager.Images["kutija_3"]);
+
+            Sprite BoxSprite = new Sprite();
+            BoxSprite.SpriteSets.Add(Boxset);
+
+            Box.Visual = BoxSprite;
+            Box.Visual.Scale = new Vertex(100, 100, 0);
+            Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Data["Box"] = true;
+            Box.Data["P1Coll"] = new CollisionModel();
+            Box.Data["P2Coll"] = new CollisionModel();
+
+            Scene.AddSceneObject(Box);
         }
     }
 }

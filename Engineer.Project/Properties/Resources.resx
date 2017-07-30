@@ -160,4 +160,10 @@
   <data name="zid_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zid_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zidici_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zidici 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zidici_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zidici 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
