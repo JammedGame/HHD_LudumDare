@@ -58,6 +58,7 @@ namespace Engineer.Project
             GameScene NewGame = new GameScene();
             NewGame.Data["Game"] = CurrentGame;
             NewGame.Data["Runner"] = Runner;
+            NewGame.Init();
             LoadingScene Loading;
             if (!CurrentGame.Data.ContainsKey("LoadingScene"))
             {
@@ -74,7 +75,6 @@ namespace Engineer.Project
             Runner.SwitchScene("LoadingScene", false);
             CurrentGame.AddScene(NewGame);
             Runner.SwitchScene("GameScene");
-           
         }
         private void QuitClick(object sender, EventArguments e)
         {

@@ -29,7 +29,8 @@ namespace Engineer.Project
             VertexBuilder P2 = new VertexBuilder(_Scene.Player2.Visual.Translation);
             Vertex Diff = VertexBuilder.Abs(P1 - P2).ToVertex();
             Vertex Median = ((P1 + P2) * 0.5f).ToVertex();
-            this._Scene.Transformation.Translation = new Vertex(Median.X - _Runner.Width, Median.Y - _Runner.Height, 0);
+            Vertex Translation = new Vertex(-Median.X + _Runner.Width / 2, -Median.Y + _Runner.Height / 2, 0);
+            this._Scene.Transformation.Translation = Translation;
         }
     }
 }
