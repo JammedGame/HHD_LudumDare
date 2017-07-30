@@ -19,7 +19,13 @@ namespace Engineer.Project
         public Player Player2 { get => _Player2; set => _Player2 = value; }
         public GameScene()
         {
-            this._Name = "GameScene";      
+            this._Name = "GameScene";
+            
+            this.Player1 = new Player(this);
+            this.Player2 = new Player(this);            
+            Level.Generate(this, 0, new Player[] {this.Player1, this.Player2});
+            this.Movement = new Movement(Player1, Player2, this);
+            this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);                  
         }
         public void Init()
         {

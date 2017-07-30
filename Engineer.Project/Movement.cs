@@ -42,7 +42,13 @@ namespace Engineer.Project
         private bool P1RightP2 = false;
         private bool P1TopP2 = false;
         private bool P1BottomP2 = false;
-                
+
+        private float RightEdge;
+        private float LeftEdge;
+        private float BottomEdge;
+        private float TopEdge;
+
+
         private List<SceneObject> LSO = new List<SceneObject>();
 
         public Movement(Player P1, Player P2, Scene2D CScene)
@@ -129,10 +135,7 @@ namespace Engineer.Project
             }
         }
         public void GameUpdate(Game G, EventArguments E)
-        {
-            Player1Coll();
-            Player2Coll();
-
+        {            
             if (_WDown && !P1CollTop)
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MoveSpeed, 0);
@@ -149,22 +152,24 @@ namespace Engineer.Project
             {
                 this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
             }
-            if (_Num8 && P2CollTop)
+            if (_Num8 && !P2CollTop)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
             }
-            if (_Num4 && P2CollLeft)
+            if (_Num4 && !P2CollLeft)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
-            if (_Num5 && P2CollBottom)
+            if (_Num5 && !P2CollBottom)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
             }
-            if (_Num6 && P2CollRight)
+            if (_Num6 && !P2CollRight)
             {
                 this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
+            Player1Coll();
+            Player2Coll();
         }
         public bool ChkPlayersCollision()
         {
@@ -194,23 +199,23 @@ namespace Engineer.Project
                 }
                 else
                 {
+                    P1RightP2 = false;
+                }
+                if ((P1CentarY + Player1.Visual.Scale.Y / 2) - (P2CentarY - Player2.Visual.Scale.Y / 2) < 0)
+                {
+                    P1TopP2 = true;
+                }
+                else
+                {
                     P1TopP2 = false;
                 }
-                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
+                if ((P2CentarY + Player2.Visual.Scale.Y / 2) - (P1CentarY - Player1.Visual.Scale.Y / 2) < 0)
                 {
-                    P1RightP2 = true;
+                    P1BottomP2 = true;
                 }
                 else
                 {
-                    P1RightP2 = false;
-                }
-                if ((P2CentarX + Player2.Visual.Scale.X / 2) - (P1CentarX - Player1.Visual.Scale.X / 2) < 0)
-                {
-                    P1RightP2 = true;
-                }
-                else
-                {
-                    P1RightP2 = false;
+                    P1BottomP2 = false;
                 }
             }
         }
@@ -256,7 +261,12 @@ namespace Engineer.Project
             {
                 for (int i = 0; i < colList.Count; i++)
                 {
-                    if ((Player1.Visual.Translation.X + Player1.Visual.Scale.X) - colList[i].Visual.Translation.X >= 0 || (Player1.Visual.Translation.X + Player1.Visual.Scale.X) - colList[i].Visual.Translation.X <= Player1.Visual.Scale.X / 10)
+                    LeftEdge = Player1.Visual.Translation.X;
+                    RightEdge = Player1.Visual.Translation.X+Player1.Visual.Scale.X;                    
+                    TopEdge = Player1.Visual.Translation.Y;
+                    BottomEdge = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y;
+                    
+                    if (RightEdge == colList[i].Visual.Translation.X && ((BottomEdge<= colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y && TopEdge>=colList[i].Visual.Translation.Y) || (BottomEdge >= colList[i].Visual.Translation.Y && TopEdge <= colList[i].Visual.Translation.Y) || (BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge < colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y)))
                     {
                         P1CollRight = true;
                     }
@@ -264,7 +274,7 @@ namespace Engineer.Project
                     {
                         P1CollRight = false;
                     }
-                    if (Player1.Visual.Translation.X - (colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) <= 0 || Player1.Visual.Translation.X - (colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) >= -Player1.Visual.Scale.X / 10)
+                    if (LeftEdge==colList[i].Visual.Translation.X +colList[i].Visual.Scale.X && ((TopEdge >= colList[i].Visual.Translation.Y && BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y )||(TopEdge<=colList[i].Visual.Translation.Y && BottomEdge >= colList[i].Visual.Translation.Y) ||(TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && BottomEdge > colList[i].Visual.Translation.Y+colList[i].Visual.Scale.Y)))
                     {
                         P1CollLeft = true;
                     }
@@ -272,15 +282,7 @@ namespace Engineer.Project
                     {
                         P1CollLeft = false;
                     }
-                    if ((Player1.Visual.Translation.Y + Player1.Visual.Scale.Y) - colList[i].Visual.Translation.Y >= 0 || ((Player1.Visual.Translation.Y + Player1.Visual.Scale.Y) - colList[i].Visual.Translation.Y) <= Player1.Visual.Scale.Y / 10)
-                    {
-                        P1CollBottom = true;
-                    }
-                    else
-                    {
-                        P1CollBottom = false;
-                    }
-                    if ((Player1.Visual.Translation.Y + Player1.Visual.Scale.Y) - colList[i].Visual.Translation.Y <= 0 || (Player1.Visual.Translation.Y + Player1.Visual.Scale.Y) - colList[i].Visual.Translation.Y >= -Player1.Visual.Scale.Y / 10)
+                    if (TopEdge == colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && ((LeftEdge>=colList[i].Visual.Translation.X && RightEdge<=colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)||(LeftEdge<=colList[i].Visual.Translation.X && RightEdge>=colList[i].Visual.Translation.X)||(LeftEdge<colList[i].Visual.Translation.X +colList[i].Visual.Scale.X && RightEdge>colList[i].Visual.Translation.X+colList[i].Visual.Scale.X)))
                     {
                         P1CollTop = true;
                     }
@@ -288,7 +290,22 @@ namespace Engineer.Project
                     {
                         P1CollTop = false;
                     }
+                    if (BottomEdge == colList[i].Visual.Translation.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)||(LeftEdge<=colList[i].Visual.Translation.X && RightEdge>=colList[i].Visual.Translation.X)||(LeftEdge<colList[i].Visual.Translation.X+colList[i].Visual.Scale.X && RightEdge>colList[i].Visual.Translation.X+colList[i].Visual.Scale.X)))
+                    {
+                        P1CollBottom = true;
+                    }
+                    else
+                    {
+                        P1CollBottom = false;
+                    }
                 }
+            }
+            else
+            {
+                P1CollBottom = false;
+                P1CollLeft = false;
+                P1CollRight = false;
+                P1CollTop = false;
             }
         }
         public void Player2Coll()
