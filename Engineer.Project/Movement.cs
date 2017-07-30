@@ -24,6 +24,8 @@ namespace Engineer.Project
         private Player Player1, Player2;
         private Scene2D CScene;
 
+        private Mechanics Mechanics;
+
         private bool PCollision = false;
         private bool P1WCollision = false;
         private bool P2WCollision = false;
@@ -46,9 +48,9 @@ namespace Engineer.Project
             this.CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdate);
             this.CScene.Events.Extern.KeyDown += new GameEventHandler(KeyDownEvent);
             this.CScene.Events.Extern.KeyUp += new GameEventHandler(KeyUpEvent);
-
-            LSO = CScene.GetObjectsWithData("Collision");
+                        
             Boxes = CScene.GetObjectsWithData("Box");
+            this.Mechanics = new Mechanics(CScene);
         }
         public void KeyDownEvent(Game G, EventArguments E)
         {
@@ -121,7 +123,8 @@ namespace Engineer.Project
             }
         }
         public void GameUpdate(Game G, EventArguments E)
-        {            
+        {
+            LSO = CScene.GetObjectsWithData("Collision");
             if (_WDown && !P1Wall.Top && !P1Other.Top)
             {
                 bool Able = true;
@@ -251,6 +254,8 @@ namespace Engineer.Project
                 if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
             }
             PlayersCollision();
+
+            this.Mechanics.CheckLever(Player1,Player2);
         }
         private void PlayersCollision()
         {

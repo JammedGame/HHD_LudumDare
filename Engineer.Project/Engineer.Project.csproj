@@ -169,5 +169,11 @@
   <ItemGroup>
     <None Include="Resources\zidici 2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lever_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lever_up.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
