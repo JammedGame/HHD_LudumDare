@@ -12,17 +12,18 @@ namespace Engineer.Project
 {
     public class GameScene : Scene2D
     {
-        private Movement Movement;
-        private Player Player1;
-        private Player Player2;
+        private Movement _Movement;
+        private Player _Player1;
+        private Player _Player2;
+        public Player Player1 { get => _Player1; set => _Player1 = value; }
+        public Player Player2 { get => _Player2; set => _Player2 = value; }
         public GameScene()
         {
             this._Name = "GameScene";
-            
-            this.Player1 = new Player(this);
-            this.Player2 = new Player(this);
-            this.Movement = new Movement(Player1, Player2, this);
-            Level.Generate(this, 0, new Player[] {this.Player1, this.Player2});
+            this._Player1 = new Player(this);
+            this._Player2 = new Player(this);
+            Level.Generate(this, 0, new Player[] {this._Player1, this._Player2});
+            this._Movement = new Movement(_Player1, _Player2, this);
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);                  
         }
         private void KeyPress(object Sender, EventArguments E)

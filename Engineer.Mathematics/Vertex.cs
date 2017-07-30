@@ -145,5 +145,9 @@ namespace Engineer.Mathematics
                                     Left.Z * Right.X - Left.X * Right.Z,
                                     Left.X * Right.Y - Left.Y * Right.X);
         }
+        public static VertexBuilder Abs(VertexBuilder VB)
+        {
+            return new VertexBuilder(Math.Abs(VB.X), Math.Abs(VB.Y), Math.Abs(VB.Z));
+        }
     }
 }
