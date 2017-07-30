@@ -316,7 +316,12 @@ namespace Engineer.Project
             {
                 for (int i = 0; i < colList.Count; i++)
                 {
-                    if ((Player2.Visual.Translation.X + Player2.Visual.Scale.X) - colList[i].Visual.Translation.X >= 0 || (Player2.Visual.Translation.X + Player2.Visual.Scale.X) - colList[i].Visual.Translation.X <= Player2.Visual.Scale.X / 10)
+                    LeftEdge = Player2.Visual.Translation.X;
+                    RightEdge = Player2.Visual.Translation.X + Player2.Visual.Scale.X;
+                    TopEdge = Player2.Visual.Translation.Y;
+                    BottomEdge = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y;
+
+                    if (RightEdge == colList[i].Visual.Translation.X && ((BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge >= colList[i].Visual.Translation.Y) || (BottomEdge >= colList[i].Visual.Translation.Y && TopEdge <= colList[i].Visual.Translation.Y) || (BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y)))
                     {
                         P2CollRight = true;
                     }
@@ -324,7 +329,7 @@ namespace Engineer.Project
                     {
                         P2CollRight = false;
                     }
-                    if (Player2.Visual.Translation.X - (colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) <= 0 || Player2.Visual.Translation.X - (colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) >= -Player2.Visual.Scale.X / 10)
+                    if (LeftEdge == colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && ((TopEdge >= colList[i].Visual.Translation.Y && BottomEdge <= colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y) || (TopEdge <= colList[i].Visual.Translation.Y && BottomEdge >= colList[i].Visual.Translation.Y) || (TopEdge < colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && BottomEdge > colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y)))
                     {
                         P2CollLeft = true;
                     }
@@ -332,15 +337,7 @@ namespace Engineer.Project
                     {
                         P2CollLeft = false;
                     }
-                    if ((Player2.Visual.Translation.Y + Player2.Visual.Scale.Y) - colList[i].Visual.Translation.Y >= 0 || ((Player2.Visual.Translation.Y + Player2.Visual.Scale.Y) - colList[i].Visual.Translation.Y) <= Player2.Visual.Scale.Y / 10)
-                    {
-                        P2CollBottom = true;
-                    }
-                    else
-                    {
-                        P2CollBottom = false;
-                    }
-                    if ((Player2.Visual.Translation.Y + Player2.Visual.Scale.Y) - colList[i].Visual.Translation.Y <= 0 || (Player2.Visual.Translation.Y + Player2.Visual.Scale.Y) - colList[i].Visual.Translation.Y >= -Player2.Visual.Scale.Y / 10)
+                    if (TopEdge == colList[i].Visual.Translation.Y + colList[i].Visual.Scale.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) || (LeftEdge <= colList[i].Visual.Translation.X && RightEdge >= colList[i].Visual.Translation.X) || (LeftEdge < colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && RightEdge > colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)))
                     {
                         P2CollTop = true;
                     }
@@ -348,7 +345,22 @@ namespace Engineer.Project
                     {
                         P2CollTop = false;
                     }
+                    if (BottomEdge == colList[i].Visual.Translation.Y && ((LeftEdge >= colList[i].Visual.Translation.X && RightEdge <= colList[i].Visual.Translation.X + colList[i].Visual.Scale.X) || (LeftEdge <= colList[i].Visual.Translation.X && RightEdge >= colList[i].Visual.Translation.X) || (LeftEdge < colList[i].Visual.Translation.X + colList[i].Visual.Scale.X && RightEdge > colList[i].Visual.Translation.X + colList[i].Visual.Scale.X)))
+                    {
+                        P2CollBottom = true;
+                    }
+                    else
+                    {
+                        P2CollBottom = false;
+                    }
                 }
+            }
+            else
+            {
+                P2CollBottom = false;
+                P2CollLeft = false;
+                P2CollRight = false;
+                P2CollTop = false;
             }
         }
 
