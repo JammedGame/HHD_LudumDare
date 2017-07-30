@@ -83,6 +83,16 @@ namespace Engineer.Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap glow {
+            get {
+                object obj = ResourceManager.GetObject("glow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kuglica_01 {
             get {
                 object obj = ResourceManager.GetObject("kuglica_01", resourceCulture);
