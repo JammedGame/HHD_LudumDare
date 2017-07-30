@@ -16,7 +16,6 @@ namespace Engineer.Project
         {
             if (Index == 0)
             {
-                Scene.BackColor = Color.BlueViolet;
                 TiledImporter.Import(Scene, "Data/sample.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);

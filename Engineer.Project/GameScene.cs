@@ -12,6 +12,9 @@ namespace Engineer.Project
 {
     public class GameScene : Scene2D
     {
+        private int _Seed = 0;
+        private int _BackColorChange;
+        private int _BackColorValue;
         private Movement _Movement;
         private Player _Player1;
         private Player _Player2;
@@ -19,7 +22,10 @@ namespace Engineer.Project
         public Player Player2 { get => _Player2; set => _Player2 = value; }
         public GameScene()
         {
-            this._Name = "GameScene";                
+            this._Name = "GameScene";
+            this.BackColor = Color.Black;
+            this.Events.Extern.TimerTick += new GameEventHandler(ColorUpdates);
+            this._BackColorValue = 0;
         }
         public void Init()
         {
@@ -43,6 +49,15 @@ namespace Engineer.Project
                 ExternRunner Runner = (ExternRunner)this.Data["Runner"];
                 Runner.SwitchScene("Menu", false);
             }
+        }
+        private void ColorUpdates(object Sender, EventArguments E)
+        {
+            this._Seed++;
+            if (this._Seed % 3 != 0) return;
+            this._BackColorValue += this._BackColorChange;
+            this.BackColor = Color.FromArgb((int)(104 * (this._BackColorValue / 100.0f)), (int)(58 * (this._BackColorValue / 100.0f)), (int)(94 * (this._BackColorValue / 100.0f)));
+            if (this._BackColorValue == 100) this._BackColorChange = -1;
+            if (this._BackColorValue == 0) this._BackColorChange = +1;
         }
     }
 }
