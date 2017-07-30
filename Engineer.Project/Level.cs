@@ -38,7 +38,7 @@ namespace Engineer.Project
             Box.Visual = BoxSprite;
             Box.Visual.Scale = new Vertex(100, 100, 0);
             Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
-            Box.Data["Box"] = true;
+            Box.Data["Collision"] = true;
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
 
