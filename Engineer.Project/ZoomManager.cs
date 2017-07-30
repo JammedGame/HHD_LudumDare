@@ -29,14 +29,25 @@ namespace Engineer.Project
             VertexBuilder P2 = new VertexBuilder(_Scene.Player2.Visual.Translation);
             Vertex Diff = VertexBuilder.Abs(P1 - P2).ToVertex();
             Vertex Median = ((P1 + P2) * 0.5f).ToVertex();
-            Vertex Translation = new Vertex(-Median.X + _Runner.Width / 2, -Median.Y + _Runner.Height / 2, 0);
-            this._Scene.Transformation.Translation = Translation;
-            if (Diff.X > 650) this.XZoom = 1 + (Diff.X - 650) / 1000.0f;
+            
+            if (Diff.X > 650) this.XZoom = 1 - (Diff.X - 650) / 1200.0f;
             else XZoom = 1;
-            if (Diff.Y > 400) this.YZoom = 1 - (Diff.Y - 400) / 1000.0f;
+            if (Diff.Y > 400) this.YZoom = 1 - (Diff.Y - 400) / 1200.0f;
             else YZoom = 1;
-            //if (XZoom < YZoom) this._Scene.Transformation.Scale = new Vertex(XZoom, XZoom, 1);
-            //else this._Scene.Transformation.Scale = new Vertex(YZoom, YZoom, 1);
+            if (XZoom < YZoom)
+            {
+                if (XZoom < 0.5f) XZoom = 0.5f;
+                Vertex Translation = new Vertex(-Median.X * XZoom + _Runner.Width / 2, -Median.Y * XZoom + _Runner.Height / 2, 0);
+                this._Scene.Transformation.Translation = new Vertex(Translation.X, Translation.Y, 0);
+                this._Scene.Transformation.Scale = new Vertex(XZoom, XZoom, 1);
+            }
+            else
+            {
+                if (YZoom < 0.5f) YZoom = 0.5f;
+                Vertex Translation = new Vertex(-Median.X * YZoom + _Runner.Width / 2, -Median.Y * YZoom + _Runner.Height / 2, 0);
+                this._Scene.Transformation.Translation = new Vertex(Translation.X, Translation.Y, 0);
+                this._Scene.Transformation.Scale = new Vertex(YZoom, YZoom, 1);
+            }
         }
     }
 }
