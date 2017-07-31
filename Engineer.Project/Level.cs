@@ -14,7 +14,7 @@ namespace Engineer.Project
         public static int leverID = 0;
         public static int doorID = 0;
         public static int fanID = 0;
-        
+
         public static void Generate(Scene2D Scene, int Index, Player[] Players)
         {
             leverID = 0;
@@ -49,7 +49,7 @@ namespace Engineer.Project
                 GenerateLever(Scene, 5, 11);
                 GenerateBox(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
-                GenerateFan(Scene,4,2);
+                GenerateFan(Scene,4,2,1,7);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
@@ -134,7 +134,7 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Fire);
         }
-        public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation)
+        public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation, int Direction, int Range)
         {
             SpriteSet FanSpriteSet = new SpriteSet("Fan");
             for(int i = 0; i < 5; i++) { 
@@ -143,10 +143,18 @@ namespace Engineer.Project
             Sprite FanSprite = new Sprite();
             FanSprite.SpriteSets.Add(FanSpriteSet);
 
+            Range *= 100;
+
             DrawnSceneObject Fan = new DrawnSceneObject("Fan", FanSprite);
             Fan.Visual.Scale = new Vertex(100, 100, 0);
             Fan.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
-            
+            Fan.Data["Range"] = Range;
+            Fan.Data["Direction"] = Direction;
+
+            DrawnSceneObject GlowDSO = new FanGlow(Fan);
+            Scene.Objects.Insert(0, GlowDSO);
+            Scene.Data[Fan.ID + "Glow"] = GlowDSO;
+
             Fan.Data["Collision"] = Collision2DType.Rectangular;
             Scene.Data["Fan" + fanID++] = Fan;
 

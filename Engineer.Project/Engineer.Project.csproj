@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FanGlow.cs" />
     <Compile Include="GameHelpers.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameScene.cs" />

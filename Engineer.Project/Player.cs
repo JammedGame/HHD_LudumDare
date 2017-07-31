@@ -29,7 +29,7 @@ namespace Engineer.Project
                 GlowSet.Sprite.Add(ResourceManager.Images["kuglica_01"]);
                 PlayerGlow = new Sprite();
                 PlayerGlow.SpriteSets.Add(GlowSet);
-                PlayerGlow.Translation = new Vertex(-120, -120, 0);
+                PlayerGlow.Translation = new Vertex(-125, -125, 0);
                 PlayerGlow.Scale = new Vertex(300, 300, 1);
                 PlayerGlow.Paint = Color.FromArgb(150, 204,0,0);
             }
