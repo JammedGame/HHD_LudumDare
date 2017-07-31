@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Mathematics;
+using Engineer.Runner;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -52,19 +53,21 @@ namespace Engineer.Project
 
             this.Data["Player"] = true;
 
+            ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
+
             float Right = 20;
             if (id == 2)
             {
-                Right = 500;
+                Right = Runner.Width - 320;
             }
 
             DrawnSceneObject HealthBar = GameHelpers.createSprite("progressbar", new Vertex(Right, 20, 0), new Vertex(300, 40, 0));
-
-            this.HealthBar = (Sprite) HealthBar.Visual;
-            this.HealthBar.Fixed = true;
-           
+            DrawnSceneObject Health = GameHelpers.createSprite("progress", new Vertex(Right, 20, 0), new Vertex(300, 40, 0));
+            HealthBar.Visual.Fixed = true;
+            Health.Visual.Fixed = true;
             Scene.AddSceneObject(HealthBar);
-
+            Scene.AddSceneObject(Health);
+            this.HealthBar = (Sprite)Health.Visual;
         }
 
      

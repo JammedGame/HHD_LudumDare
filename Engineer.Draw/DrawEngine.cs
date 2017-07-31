@@ -144,7 +144,7 @@ namespace Engineer.Draw
             this._Matrix.PopMatrix();
 
             this._Matrix.LoadIdentity();
-            this._Matrix.Scale(CurrentScene.Transformation.Scale.X, CurrentScene.Transformation.Scale.Y, CurrentScene.Transformation.Scale.Z);
+            //this._Matrix.Scale(CurrentScene.Transformation.Scale.X, CurrentScene.Transformation.Scale.Y, CurrentScene.Transformation.Scale.Z);
             this._Matrix.PushMatrix();
             this._CurrentRenderer.SetModelViewMatrix(_Matrix.ModelViewMatrix);
             for (int i = 0; i < CurrentScene.Objects.Count; i++)
