@@ -16,6 +16,20 @@ namespace Engineer.Project
         
         public static void Generate(Scene2D Scene, int Index, Player[] Players)
         {
+            leverID = 0;
+            doorID = 0;
+            if (Index == 0)
+            {
+                TiledImporter.Import(Scene, "Data/sample.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+
+                GenerateBox(Scene, 3, 3);
+                GenerateLever(Scene, 3, 8);
+                GenerateDoor(Scene, 2, 6);
+            }
             if (Index == 1)
             {
                 TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);

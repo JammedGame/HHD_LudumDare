@@ -19,7 +19,6 @@ namespace Engineer.Project
         public double Distance(DrawnSceneObject Obj1, DrawnSceneObject Obj2)
         {
             return (Math.Sqrt(Math.Pow(Math.Abs(Obj1.Visual.Translation.X - Obj2.Visual.Translation.X), 2) + Math.Pow(Math.Abs(Obj1.Visual.Translation.Y - Obj2.Visual.Translation.Y), 2)));
-            
         }
         public void CheckLever(Player Player1, Player Player2)
         {
