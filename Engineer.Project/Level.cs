@@ -109,7 +109,7 @@ namespace Engineer.Project
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
             TileCollection SpaceCollection = new TileCollection(ResourceManager.Images["press_space"]);
             Tile PressSpace = new Tile();
-            PressSpace.Scale = new Vertex(500, 60, 1);
+            PressSpace.Scale = new Vertex(500, 50, 1);
             PressSpace.Translation = new Vertex(Runner.Width - 550, Runner.Height - 100, 0);
             PressSpace.Collection = SpaceCollection;
             PressSpace.Fixed = true;

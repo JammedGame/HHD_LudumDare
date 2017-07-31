@@ -310,5 +310,23 @@
   <ItemGroup>
     <None Include="Resources\menu_level_dot_bela.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\freezer_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\freezer_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\freezer_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\freezer_01.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

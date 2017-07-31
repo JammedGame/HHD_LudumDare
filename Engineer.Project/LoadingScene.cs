@@ -28,12 +28,12 @@ namespace Engineer.Project
             Tile BarTile = new Tile();
             BarTile.Collection = BarCollection;
             BarTile.SetIndex(0);
-            BarTile.Scale = new Vertex(1600, 100, 1);
+            BarTile.Scale = new Vertex(1600, 50, 1);
             BarTile.Translation = new Vertex(120, 900, 0);
             Tile ProgressTile = new Tile();
             ProgressTile.Collection = ProgressCollection;
             ProgressTile.SetIndex(0);
-            ProgressTile.Scale = new Vertex(0, 100, 1);
+            ProgressTile.Scale = new Vertex(0, 50, 1);
             ProgressTile.Translation = new Vertex(120, 900, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Bar = new DrawnSceneObject("Bar", BarTile);
@@ -49,7 +49,7 @@ namespace Engineer.Project
         }
         private void ProgressUpdate(object Sender, EventArguments E)
         {
-            ((DrawnSceneObject)this.Data["Progress"]).Visual.Scale = new Vertex(E.Progress * 16, 100, 1);
+            ((DrawnSceneObject)this.Data["Progress"]).Visual.Scale = new Vertex(E.Progress * 16, 50, 1);
         }
     }
 }
