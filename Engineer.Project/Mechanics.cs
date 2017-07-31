@@ -172,9 +172,16 @@ namespace Engineer.Project
         {
             if (!CScene.Data.ContainsKey("ExitDoor")) return;
             DrawnSceneObject Exit = (DrawnSceneObject)CScene.Data["ExitDoor"];
-            if(Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Rectangular) &&
+            LevelPicker Picker = (LevelPicker)((Game)CScene.Data["Game"]).Data["LevelPicker"];
+            if (Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Rectangular) &&
                 Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Radius))
             {
+                if (PlayerProgress.Read() < Level.LastGen + 1)
+                {
+                    PlayerProgress.Write(Level.LastGen + 1);
+                    Picker.Max = Level.LastGen + 1;
+                    Picker.SetCurrent(Level.LastGen + 1);
+                }
                 ExternRunner Runner = (ExternRunner)CScene.Data["Runner"];
                 Runner.SwitchScene("LevelPicker", false);
             }

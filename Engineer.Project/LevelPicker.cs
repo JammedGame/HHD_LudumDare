@@ -11,10 +11,11 @@ namespace Engineer.Project
 {
     public class LevelPicker : Scene2D
     {
-
+        public int Max = 0;
         public LevelPicker()
         {
             this.Name = "LevelPicker";
+            Max = PlayerProgress.Read();
             this.Transformation.Scale = new Vertex(LocalSettings.Window.Y / LocalSettings.Scale.Y, LocalSettings.Window.Y / LocalSettings.Scale.Y, 1);
             TileCollection Backgrounds = new TileCollection();
             Backgrounds.TileImages.Add(ResourceManager.Images["back"]);
@@ -39,11 +40,10 @@ namespace Engineer.Project
             ReturnTile.Translation = new Vertex(835, 900, 0);
             Tile LevelDisplay = new Tile();
             LevelDisplay.Collection = Levels;
-            LevelDisplay.SetIndex(0);
+            LevelDisplay.SetIndex(Max);
             LevelDisplay.Scale = new Vertex(1000, 600, 1);
             LevelDisplay.Translation = new Vertex(460, 200, 0);
             Tile Left = new Tile();
-            Left.Active = false;
             Left.Collection = BackForth;
             Left.SetIndex(0);
             Left.Scale = new Vertex(80, 140, 1);
@@ -67,6 +67,21 @@ namespace Engineer.Project
             this.AddSceneObject(Level);
             this.AddSceneObject(LeftDSO);
             this.AddSceneObject(RightDSO);
+            if (LevelDisplay.Index() == 0) Left.Active = false;
+            else Left.Active = true;
+            if (LevelDisplay.Index() == Max) Right.Active = false;
+            else Right.Active = true;
+        }
+        public void SetCurrent(int Index)
+        {
+            Tile Left = (Tile)((DrawnSceneObject)this.Data["Left"]).Visual;
+            Tile Right = (Tile)((DrawnSceneObject)this.Data["Right"]).Visual;
+            Tile Level = (Tile)((DrawnSceneObject)this.Data["Level"]).Visual;
+            Level.SetIndex(Index);
+            if (Level.Index() == 0) Left.Active = false;
+            else Left.Active = true;
+            if (Level.Index() == Max) Right.Active = false;
+            else Right.Active = true;
         }
         private void ReturnClick(object sender, EventArguments e)
         {
@@ -81,6 +96,8 @@ namespace Engineer.Project
             Level.SetIndex(Level.Index() - 1);
             if (Level.Index() == 0) Left.Active = false;
             else Left.Active = true;
+            if (Level.Index() == Max) Right.Active = false;
+            else Right.Active = true;
             Right.Active = true;
         }
         private void RightClick(object sender, EventArguments e)
@@ -89,7 +106,9 @@ namespace Engineer.Project
             Tile Right = (Tile)((DrawnSceneObject)this.Data["Right"]).Visual;
             Tile Level = (Tile)((DrawnSceneObject)this.Data["Level"]).Visual;
             Level.SetIndex(Level.Index() + 1);
-            if (Level.Index() == 2) Right.Active = false;
+            if (Level.Index() == 0) Left.Active = false;
+            else Left.Active = true;
+            if (Level.Index() == Max) Right.Active = false;
             else Right.Active = true;
             Left.Active = true;
         }
