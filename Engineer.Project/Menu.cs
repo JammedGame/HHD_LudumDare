@@ -29,13 +29,13 @@ namespace Engineer.Project
             Tile PlayTile = new Tile();
             PlayTile.Collection = Buttons;
             PlayTile.SetIndex(0);
-            PlayTile.Scale = new Vertex(300, 150, 1);
-            PlayTile.Translation = new Vertex(100, 100, 0);
+            PlayTile.Scale = new Vertex(300, 100, 1);
+            PlayTile.Translation = new Vertex(600, 800, 0);
             Tile QuitTile = new Tile();
             QuitTile.Collection = Buttons;
             QuitTile.SetIndex(1);
-            QuitTile.Scale = new Vertex(300, 150, 1);
-            QuitTile.Translation = new Vertex(100, 350, 0);
+            QuitTile.Scale = new Vertex(300, 100, 1);
+            QuitTile.Translation = new Vertex(1000, 800, 0);
             DrawnSceneObject Back = new DrawnSceneObject("Back", BackTile);
             DrawnSceneObject Play = new DrawnSceneObject("Play", PlayTile);
             Play.Events.Extern.MouseClick += new GameEventHandler(this.PlayClick);

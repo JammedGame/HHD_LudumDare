@@ -179,5 +179,14 @@
   <ItemGroup>
     <None Include="Resources\radialglow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kaver 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dugme_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dugme_quit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
