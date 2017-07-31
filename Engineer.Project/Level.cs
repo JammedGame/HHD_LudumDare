@@ -93,8 +93,9 @@ namespace Engineer.Project
                 Players[0].HeatRange = 100;
                 Players[1].HeatRange = 100;
 
-                Players[0].MaxHeat = 200;
-                Players[1].MaxHeat = 200;
+                Players[0].Heat = Players[0].MaxHeat = 600;
+                Players[1].Heat = Players[1].MaxHeat = 600;
+                
 
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
@@ -300,8 +301,10 @@ namespace Engineer.Project
             for (int i = 0; i < Players.Count; i++)
             {
                 Players[i].Visual.Translation = (Vertex)Players[i].Data["OriginalLocation"];
+                ((Player)Players[i]).Heat = ((Player)Players[i]).MaxHeat;
             }
             ((DrawnSceneObject)Scene.Data["PressSpace"]).Active = false;
+
         }
     }
 }      
