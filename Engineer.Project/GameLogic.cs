@@ -29,7 +29,9 @@ namespace Engineer.Project
             Picker.Data["Runner"] = this._Runner;
             this._Runner.SetWindowState(LocalSettings.State);
             this._Runner.Init(this._Game);
-            
+            SoundSceneObject SSO = new SoundSceneObject("Data/Music.wav", "Music");
+            SSO.PlayLooped();
+            _Game.Data["Music"] = SSO;
         }
         public void Run()
         {

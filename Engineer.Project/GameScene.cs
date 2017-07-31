@@ -38,8 +38,6 @@ namespace Engineer.Project
             this._Movement = new Movement(_Player1, _Player2, this);
             ZoomManager ZM = new ZoomManager(this);
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);
-            SoundSceneObject SSO = new SoundSceneObject("Data/Music.wav", "Music");
-            SSO.PlayLooped();
         }
         private void KeyPress(object Sender, EventArguments E)
         {
