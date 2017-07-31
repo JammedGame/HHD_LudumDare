@@ -36,7 +36,7 @@ namespace Engineer.Project
                         {
                             for (int j = 0; j < Height; j++)
                             {
-                                int Current = Convert.ToInt32(Values[Index]) - 2;
+                                int Current = Convert.ToInt32(Values[Index]) - 1;
                                 Indices[j, i] = Current;
                                 Index++;
                             }

@@ -51,6 +51,17 @@ namespace Engineer.Project
                 GenerateFire(Scene, 11, 10);
                 GenerateFan(Scene,4,2,1,7);
             }
+            if (Index == 2)
+            {
+                TiledImporter.Import(Scene, "Data/Level1.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 7 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 8 * 100 + 25, 0);
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+                                
+                GenerateFire(Scene, 7, 4);
+             
+            }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
         {

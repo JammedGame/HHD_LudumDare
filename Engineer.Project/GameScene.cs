@@ -36,9 +36,7 @@ namespace Engineer.Project
             Level.Generate(this, 1, new Player[] { this._Player1, this._Player2 });
             this._Movement = new Movement(_Player1, _Player2, this);
             ZoomManager ZM = new ZoomManager(this);
-            this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);
-
-           
+            this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);                       
         }
         private void KeyPress(object Sender, EventArguments E)
         {
