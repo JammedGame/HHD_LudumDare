@@ -153,12 +153,6 @@
     <None Include="Resources\kutija 3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Untitled-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vatra.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ventilator100x100.png" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +214,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plinska bocaaa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dugme 2 dole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dugme 2 gore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vatra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator 4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventilator 5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

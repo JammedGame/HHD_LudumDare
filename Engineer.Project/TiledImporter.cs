@@ -156,6 +156,7 @@ namespace Engineer.Project
             //NewTile.Paint = Color.Red;
             NewTile.Translation = new Vertex(X * TiledImporter.FieldSize, Y * TiledImporter.FieldSize, 0);
             NewTile.Scale = new Vertex(XSize * TiledImporter.FieldSize, YSize * TiledImporter.FieldSize, 1);
+            NewTile.Active = false;
             DrawnSceneObject DSO = new DrawnSceneObject("Collider", NewTile);
             DSO.Data["Collision"] = Collision2DType.Rectangular;
             Scene.AddSceneObject(DSO);

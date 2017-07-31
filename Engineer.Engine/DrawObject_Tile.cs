@@ -43,6 +43,7 @@ namespace Engineer.Engine
             this.Scale = new Mathematics.Vertex(100, 100, 1);
             this.Collection = new TileCollection();
             this._SubTiles = new List<Tile>();
+            this._Paint = Color.White;
         }
         public Tile(Tile T) : base(T)
         {
@@ -52,6 +53,7 @@ namespace Engineer.Engine
             this.Collection = new TileCollection(T.Collection);
             this._SubTiles = new List<Tile>();
             for (int i = 0; i < T._SubTiles.Count; i++) this._SubTiles.Add(new Tile(T._SubTiles[i]));
+            this._Paint = T._Paint;
         }
         public void SetIndex(int Index)
         {
