@@ -77,7 +77,7 @@ namespace Engineer.Project
             TileMap Map = new TileMap();
             Map.FieldSize = TiledImporter.FieldSize;
             Map.MapCollection = Collection;
-            Map.SetMap(new Point(20, 20), Indices);
+            Map.SetMap(new Point(Width, Height), Indices);
             DrawnSceneObject DSO = new DrawnSceneObject("Map", Map);
             Scene.AddSceneObject(DSO);
         }

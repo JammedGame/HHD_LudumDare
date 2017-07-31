@@ -98,5 +98,13 @@ namespace Engineer.Project
                 }
             }
         }
+        public void CheckHeaters()
+        {
+            List<SceneObject> Heaters = CScene.GetObjectsWithData("Heater");
+            for (int i = 0; i < Heaters.Count; i++)
+            {
+                ((Glow)CScene.Data[Heaters[i].ID + "Glow"]).Update();
+            }
+        }
     }
 }

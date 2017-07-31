@@ -47,7 +47,7 @@ namespace Engineer.Project
                 GenerateDoor(Scene, 7, 6);
                 GenerateDoor(Scene, 8, 7);
                 GenerateLever(Scene, 5, 11);
-                GenerateBox(Scene, 10, 7);
+                GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
                 GenerateFan(Scene,4,2,1,7);
             }
@@ -123,6 +123,11 @@ namespace Engineer.Project
             Box.Data["P2Coll"] = new CollisionModel();
             Box.Data["WallColl"] = new CollisionModel();
             Box.Data["HeatSource"] = true;
+            Box.Data["Heater"] = true;
+
+            DrawnSceneObject GlowDSO = new Glow(Box.ID + "Glow", Box, 300, Color.FromArgb(150, 204, 0, 0));
+            Scene.Objects.Insert(0, GlowDSO);
+            Scene.Data[Box.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Box);
         }
@@ -234,6 +239,10 @@ namespace Engineer.Project
 
             Cold.Data["ColdSource"] = true;
             Cold.Data["Collision"] = Collision2DType.Rectangular;
+
+            DrawnSceneObject GlowDSO = new Glow(Cold.ID + "Glow", Cold, 300, Color.FromArgb(150, 65, 105, 205));
+            Scene.Objects.Insert(0, GlowDSO);
+            Scene.Data[Cold.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Cold);
         }
