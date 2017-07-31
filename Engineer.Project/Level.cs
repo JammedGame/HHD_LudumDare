@@ -304,7 +304,6 @@ namespace Engineer.Project
                 ((Player)Players[i]).Heat = ((Player)Players[i]).MaxHeat;
             }
             ((DrawnSceneObject)Scene.Data["PressSpace"]).Active = false;
-
         }
     }
 }      

@@ -33,7 +33,7 @@ namespace Engineer.Project
             this.Transformation.Scale = new Vertex(Runner.Height * 2 / 1080f, Runner.Height * 2 / 1080f, 1);
             this._Player1 = new Player(this);
             this._Player2 = new Player(this);
-            Level.Generate(this, 4, new Player[] { this._Player1, this._Player2 });
+            Level.Generate(this, 1, new Player[] { this._Player1, this._Player2 });
             this._Movement = new Movement(_Player1, _Player2, this);
             ZoomManager ZM = new ZoomManager(this);
             this.Events.Extern.KeyPress += new GameEventHandler(this.KeyPress);                       
