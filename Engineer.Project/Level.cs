@@ -211,7 +211,7 @@ namespace Engineer.Project
         public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet FireSpriteSet = new SpriteSet("Fire");
-            FireSpriteSet.Sprite.Add(ResourceManager.Images["fire"]);
+            for(int i = 0; i < 4; i++) FireSpriteSet.Sprite.Add(ResourceManager.Images["kotlarnica"+i]);
 
 
             Sprite FireSprite = new Sprite();
