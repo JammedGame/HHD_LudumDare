@@ -12,6 +12,7 @@ namespace Engineer.Project
 {
     public class Level
     {
+        public static int LastGen = -1;
         public static int leverID = 0;
         public static int doorID = 0;
         public static int fanID = 0;
@@ -23,6 +24,7 @@ namespace Engineer.Project
             doorID = 0;
             fanID = 0;
 
+            LastGen = Index;
             if (Index == 0)
             {
                 TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);
@@ -39,6 +41,7 @@ namespace Engineer.Project
                 GenerateFan(Scene, 4, 2, 1, 7);
                 GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
+                GenerateExit(Scene, 11, 2);
             }
             if (Index == 1)
             {
@@ -65,6 +68,7 @@ namespace Engineer.Project
 
                 GenerateFire(Scene, 13, 1);
                 GenerateCold(Scene,7,7);
+                GenerateExit(Scene, 1, 5);
             }
             if (Index == 3)
             {
@@ -86,7 +90,7 @@ namespace Engineer.Project
 
                 GenerateFire(Scene, 11, 7);
                 GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 11, 6));
-                // exit 9, 18
+                GenerateExit(Scene, 9, 18);
             }
 
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
@@ -291,6 +295,18 @@ namespace Engineer.Project
             Scene.Data[Cold.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Cold);
+        }
+        public static void GenerateExit(Scene2D Scene, int XLocation, int YLocation)
+        {
+            SpriteSet DoorSpriteSet = new SpriteSet("Exit");
+            DoorSpriteSet.Sprite.Add(ResourceManager.Images["exit"]);
+            Sprite DoorSprite = new Sprite();
+            DoorSprite.SpriteSets.Add(DoorSpriteSet);
+            DrawnSceneObject Door = new DrawnSceneObject("Exit", DoorSprite);
+            Door.Visual.Scale = new Vertex(100, 100, 0);
+            Door.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);      
+            Scene.Data["ExitDoor"] = Door;
+            Scene.AddSceneObject(Door);
         }
         public static void Reset(Scene2D Scene)
         {

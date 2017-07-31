@@ -277,6 +277,7 @@ namespace Engineer.Project
             this.Mechanics.CheckLever(Player1,Player2);
             this.Mechanics.CheckFan();
             this.Mechanics.CheckHeaters();
+            this.Mechanics.CheckExit(Player1, Player2);
         }
         private void PlayersCollision()
         {

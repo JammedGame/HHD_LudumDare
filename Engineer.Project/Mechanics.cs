@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Mathematics;
+using Engineer.Runner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -165,6 +166,17 @@ namespace Engineer.Project
             for (int i = 0; i < Heaters.Count; i++)
             {
                 ((Glow)CScene.Data[Heaters[i].ID + "Glow"]).Update();
+            }
+        }
+        public void CheckExit(Player Player1, Player Player2)
+        {
+            if (!CScene.Data.ContainsKey("ExitDoor")) return;
+            DrawnSceneObject Exit = (DrawnSceneObject)CScene.Data["ExitDoor"];
+            if(Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Rectangular) &&
+                Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Radius))
+            {
+                ExternRunner Runner = (ExternRunner)CScene.Data["Runner"];
+                Runner.SwitchScene("LevelPicker", false);
             }
         }
     }
