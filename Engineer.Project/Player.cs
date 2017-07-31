@@ -135,33 +135,25 @@ namespace Engineer.Project
                             double ILose = this.Heat - MyNewHeat;
                             Player.Heat += ILose;
                             this.Heat = MyNewHeat;
-
                         }
-                       
                     }
-                    
-         
-
                     Heat -= distance / 150;
-
-                }
-
-                float MinHeat = (float)Heat;
-                if (MinHeat < 0) MinHeat = 0;
-                float Value = MinHeat / (float)MaxHeat;
-                DrawnSceneObject PlayerGlow = (DrawnSceneObject)Scene.Data[Player.ID + "Glow"];
-                if((int)PlayerGlow.Data["ColorModel"] == 2)
-                {
-                    Sprite Glow = (Sprite)PlayerGlow.Visual;
-                    Glow.Paint = Color.FromArgb(150, (int)(Value * 255), (int)(140 + (1-Value) * 51), (int)((1 - Value) * 255));
-                }
-                else
-                {
-                    Sprite Glow = (Sprite)PlayerGlow.Visual;
-                    Glow.Paint = Color.FromArgb(150, (int)(65 + Value * 149), (int)((1 - Value) * 105), (int)((1 - Value) * 205));
                 }
             }
-
+            float MinHeat = (float)Heat;
+            if (MinHeat < 0) MinHeat = 0;
+            float Value = MinHeat / (float)MaxHeat;
+            DrawnSceneObject PlayerGlow = (DrawnSceneObject)Scene.Data[this.ID + "Glow"];
+            if ((int)PlayerGlow.Data["ColorModel"] == 2)
+            {
+                Sprite Glow = (Sprite)PlayerGlow.Visual;
+                Glow.Paint = Color.FromArgb(150, (int)(Value * 255), (int)(140 + (1 - Value) * 51), (int)((1 - Value) * 255));
+            }
+            else
+            {
+                Sprite Glow = (Sprite)PlayerGlow.Visual;
+                Glow.Paint = Color.FromArgb(150, (int)(65 + Value * 149), (int)((1 - Value) * 105), (int)((1 - Value) * 205));
+            }
 
             HealthBar.Scale = new Vertex(((float)Heat / (float)MaxHeat) * 300.0f, HealthBar.Scale.Y, 0);
 
