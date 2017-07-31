@@ -49,8 +49,26 @@ namespace Engineer.Project
         }
         public void CheckFan(Player Player1, Player Player2)
         {
-            for (int i = 0; i < Level.fanID; i++)
+            List<SceneObject> Fans = CScene.GetObjectsWithData("Fan");
+            List<SceneObject> Boxes = CScene.GetObjectsWithData("Box");
+            for (int i = 0; i < Fans.Count; i++)
             {
+                Fans[i].Data["Range"] = (int)Fans[i].Data["MaxRange"];
+                for (int j = 0; j < Boxes.Count; j++)
+                {
+                    Sprite Fan = (Sprite)Fans[i].Visual;
+                    Sprite Box = (Sprite)Boxes[j].Visual;
+                    int Direction = (int)Fans[i].Data["Direction"];
+                    int Range = (int)Fans[i].Data["Range"];
+                    int MaxRange = (int)Fans[i].Data["MaxRange"];
+                    if(Direction == 0)
+                    {
+                        if(Math.Abs(Fan.Translation.Y - Box.Translation.X) < 50 && Box.Translation.Y < Fan.Translation.Y)
+                        {
+
+                        }
+                    }
+                }
             }
         }
     }

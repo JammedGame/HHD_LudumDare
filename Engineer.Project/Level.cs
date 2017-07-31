@@ -137,8 +137,9 @@ namespace Engineer.Project
         public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation, int Direction, int Range)
         {
             SpriteSet FanSpriteSet = new SpriteSet("Fan");
-            for(int i = 0; i < 5; i++) { 
-            FanSpriteSet.Sprite.Add(ResourceManager.Images["fan"+i]);
+            for(int i = 0; i < 5; i++)
+            { 
+                FanSpriteSet.Sprite.Add(ResourceManager.Images["fan"+i]);
             }
             Sprite FanSprite = new Sprite();
             FanSprite.SpriteSets.Add(FanSpriteSet);
@@ -148,15 +149,14 @@ namespace Engineer.Project
             DrawnSceneObject Fan = new DrawnSceneObject("Fan", FanSprite);
             Fan.Visual.Scale = new Vertex(100, 100, 0);
             Fan.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Fan.Data["Fan"] = true;
             Fan.Data["Range"] = Range;
+            Fan.Data["MaxRange"] = Range;
             Fan.Data["Direction"] = Direction;
 
             DrawnSceneObject GlowDSO = new FanGlow(Fan);
             Scene.Objects.Insert(0, GlowDSO);
             Scene.Data[Fan.ID + "Glow"] = GlowDSO;
-
-            Fan.Data["Collision"] = Collision2DType.Rectangular;
-            Scene.Data["Fan" + fanID++] = Fan;
 
             Scene.AddSceneObject(Fan);
         }
