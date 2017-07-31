@@ -108,10 +108,10 @@ namespace Engineer.Project
             BoxSprite.SpriteSets.Add(Boxset);
 
             DrawnSceneObject Box = new DrawnSceneObject("Box", BoxSprite);
-            Box.Visual.Scale = new Vertex(100, 100, 0);
-            Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Visual.Scale = new Vertex(80, 80, 0);
+            Box.Visual.Translation = new Vertex(XLocation * 100 + 10, YLocation * 100 + 10, 0);
             Box.Data["Box"] = true;
-            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100 + 10, YLocation * 100 + 10, 0);
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
             Box.Data["WallColl"] = new CollisionModel();
@@ -127,10 +127,10 @@ namespace Engineer.Project
             BoxSprite.SpriteSets.Add(Boxset);
 
             DrawnSceneObject Box = new DrawnSceneObject("Box", BoxSprite);
-            Box.Visual.Scale = new Vertex(100, 100, 0);
-            Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Visual.Scale = new Vertex(80, 80, 0);
+            Box.Visual.Translation = new Vertex(XLocation * 100 + 10, YLocation * 100 + 10, 0);
             Box.Data["Box"] = true;
-            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100 + 10, YLocation * 100 + 10, 0);
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
             Box.Data["WallColl"] = new CollisionModel();
