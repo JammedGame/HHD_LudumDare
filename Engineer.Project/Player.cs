@@ -112,6 +112,7 @@ namespace Engineer.Project
 
             foreach (SceneObject Fan in Scene.GetObjectsWithData("Fan"))
             {
+                if (!(bool)Fan.Data["Enabled"]) continue;
                 FanGlow Glow = (FanGlow)Scene.Data[Fan.ID+"Glow"];
                 Sprite GlowSprite = (Sprite)Glow.Visual;
                 if(GlowSprite.InCollision(this.Visual, Collision2DType.Rectangular))

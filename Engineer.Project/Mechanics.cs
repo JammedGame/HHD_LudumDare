@@ -22,28 +22,40 @@ namespace Engineer.Project
         }
         public void CheckLever(Player Player1, Player Player2)
         {
-            for (int i = 0; i < Level.leverID; i++)
+            List<SceneObject> Levers = CScene.GetObjectsWithData("Lever");
+            for (int i = 0; i < Levers.Count; i++)
             {
-                DrawnSceneObject Lever = (DrawnSceneObject)CScene.Data["Lever" + i];
-                DrawnSceneObject Door = (DrawnSceneObject)CScene.Data["Door" + i];
-                float P1X = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
-                float P1Y = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
-                float P2X = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
-                float P2Y = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y / 2;
-                float LX = Lever.Visual.Translation.X + Lever.Visual.Scale.X / 2;
-                float LY = Lever.Visual.Translation.Y + Lever.Visual.Scale.Y / 2;
+                DrawnSceneObject Lever = (DrawnSceneObject)Levers[i];
+
+                DrawnSceneObject Target = (DrawnSceneObject)CScene.Data[(string)Lever.Data["Target"]];
 
                 if (Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Lever.Visual.Translation, Lever.Visual.Scale, Collision2DType.Rectangular))
                 {
-                    Door.Data.Remove("Collision");
-                    Door.Active = false;
-                    ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    if(Target.Data.ContainsKey("Door"))
+                    {
+                        Target.Data.Remove("Collision");
+                        Target.Active = false;
+                        ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    }
+                    else if (Target.Data.ContainsKey("Fan"))
+                    {
+                        Target.Data["Enabled"] = false;
+                        ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    }
                 }
                 if (Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Lever.Visual.Translation, Lever.Visual.Scale, Collision2DType.Rectangular))
                 {
-                    Door.Data.Remove("Collision");
-                    Door.Active = false;
-                    ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    if (Target.Data.ContainsKey("Door"))
+                    {
+                        Target.Data.Remove("Collision");
+                        Target.Active = false;
+                        ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    }
+                    else if (Target.Data.ContainsKey("Fan"))
+                    {
+                        Target.Data["Enabled"] = false;
+                        ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    }
                 }
             }
         }
@@ -53,6 +65,13 @@ namespace Engineer.Project
             List<SceneObject> Boxes = CScene.GetObjectsWithData("Box");
             for (int i = 0; i < Fans.Count; i++)
             {
+                FanGlow Glow = (FanGlow)CScene.Data[Fans[i].ID + "Glow"];
+                if(!(bool)Fans[i].Data["Enabled"])
+                {
+                    Glow.Active = false;
+                    continue;
+                }
+                else Glow.Active = true;
                 Sprite Fan = (Sprite)Fans[i].Visual;
                 int Direction = (int)Fans[i].Data["Direction"];
                 int Range = (int)Fans[i].Data["MaxRange"];
@@ -92,7 +111,6 @@ namespace Engineer.Project
                 }
                 if(Range != (int)Fans[i].Data["Range"])
                 {
-                    FanGlow Glow = (FanGlow)CScene.Data[Fans[i].ID+"Glow"];
                     Fans[i].Data["Range"] = Range;
                     Glow.Update();
                 }

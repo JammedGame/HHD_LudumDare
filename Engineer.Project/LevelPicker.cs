@@ -107,7 +107,7 @@ namespace Engineer.Project
             GameScene NewGame = new GameScene();
             NewGame.Data["Game"] = CurrentGame;
             NewGame.Data["Runner"] = Runner;
-            NewGame.Data["DesiredLevel"] = Level.Index() + 1;
+            NewGame.Data["DesiredLevel"] = Level.Index();
             NewGame.Init();
             LoadingScene Loading;
             if (!CurrentGame.Data.ContainsKey("LoadingScene"))

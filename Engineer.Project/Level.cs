@@ -32,15 +32,12 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
-                GenerateLever(Scene, 11, 11);
-                GenerateDoor(Scene, 6, 11);
-                GenerateLever(Scene, 11, 8);
-                GenerateDoor(Scene, 7, 6);
-                GenerateDoor(Scene, 8, 7);
-                GenerateLever(Scene, 5, 11);
+                GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 6, 11));
+                GenerateLever(Scene, 11, 8, GenerateDoor(Scene, 7, 6));
+                GenerateLever(Scene, 5, 11, GenerateDoor(Scene, 8, 7));
+                GenerateLever(Scene, 9, 4, GenerateFan(Scene, 4, 2, 1, 7));
                 GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
-                GenerateFan(Scene,4,2,1,7);
             }
             if (Index == 1)
             {
@@ -86,9 +83,8 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
-                GenerateDoor(Scene, 11, 6);
                 GenerateFire(Scene, 11, 7);
-                GenerateLever(Scene, 11, 11);
+                GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 11, 6));
                 // exit 9, 18
             }
 
@@ -147,7 +143,7 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Box);
         }
-        public static void GenerateLever(Scene2D Scene, int XLocation, int YLocation)
+        public static void GenerateLever(Scene2D Scene, int XLocation, int YLocation, string TargetID)
         {
             SpriteSet LeverSpriteSetUp = new SpriteSet("LeverUp");
             SpriteSet LeverSpriteSetDown = new SpriteSet("LeverDown");
@@ -164,14 +160,13 @@ namespace Engineer.Project
             Lever.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
 
             Lever.Data["Lever"] = true;
-           
-            ((Sprite)Lever.Visual).UpdateSpriteSet("LeverUp");
-            Scene.Data["Lever"+ leverID++] = Lever;
-            //Box.Data["P2Coll"] = new CollisionModel();            
+            Lever.Data["Target"] = TargetID;
+
+            LeverSprite.UpdateSpriteSet("LeverUp");          
 
             Scene.AddSceneObject(Lever);
         }
-        public static void GenerateDoor(Scene2D Scene, int XLocation, int YLocation)
+        public static string GenerateDoor(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet DoorSpriteSet = new SpriteSet("Door");
             DoorSpriteSet.Sprite.Add(ResourceManager.Images["door"]);
@@ -187,12 +182,14 @@ namespace Engineer.Project
 
             //Box.Data["P1Coll"] = new CollisionModel();
             //Box.Data["P2Coll"] = new CollisionModel();            
-            Scene.Data["Door"+ doorID++] = Door;
+            Scene.Data[Door.ID] = Door;
             Door.Data["Collision"] = Collision2DType.Rectangular;
 
             Door.Data["Door"] = true;
 
             Scene.AddSceneObject(Door);
+
+            return Door.ID;
         }
         public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
         {
@@ -217,7 +214,7 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Fire);
         }
-        public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation, int Direction, int Range)
+        public static string GenerateFan(Scene2D Scene, int XLocation, int YLocation, int Direction, int Range)
         {
             SpriteSet FanSpriteSet = new SpriteSet("Fan");
             for(int i = 0; i < 5; i++)
@@ -236,12 +233,17 @@ namespace Engineer.Project
             Fan.Data["Range"] = Range;
             Fan.Data["MaxRange"] = Range;
             Fan.Data["Direction"] = Direction;
+            Fan.Data["Enabled"] = true;
+
+            Scene.Data[Fan.ID] = Fan;
 
             DrawnSceneObject GlowDSO = new FanGlow(Fan);
             Scene.Objects.Insert(0, GlowDSO);
             Scene.Data[Fan.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Fan);
+
+            return Fan.ID;
         }
         public static void GenerateCold(Scene2D Scene, int XLocation, int YLocation)
         {
@@ -269,6 +271,7 @@ namespace Engineer.Project
         public static void Reset(Scene2D Scene)
         {
             List<SceneObject> Boxes = Scene.GetObjectsWithData("Box");
+            List<SceneObject> Fans = Scene.GetObjectsWithData("Fan");
             List<SceneObject> Doors = Scene.GetObjectsWithData("Door");
             List<SceneObject> Levers = Scene.GetObjectsWithData("Lever");
             List<SceneObject> Players = Scene.GetObjectsWithData("Player");
@@ -279,6 +282,10 @@ namespace Engineer.Project
             for (int i = 0; i < Doors.Count; i++)
             {
                 Doors[i].Visual.Active = true;
+            }
+            for (int i = 0; i < Fans.Count; i++)
+            {
+                Fans[i].Data["Enabled"] = true;
             }
             for (int i = 0; i < Levers.Count; i++)
             {
