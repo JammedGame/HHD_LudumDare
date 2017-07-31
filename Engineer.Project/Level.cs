@@ -26,6 +26,8 @@ namespace Engineer.Project
                 TiledImporter.Import(Scene, "Data/sample.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
@@ -38,6 +40,8 @@ namespace Engineer.Project
                 TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 10 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 11 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
@@ -56,6 +60,8 @@ namespace Engineer.Project
                 TiledImporter.Import(Scene, "Data/Level1.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 7 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 8 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
                                 
@@ -67,6 +73,8 @@ namespace Engineer.Project
                 TiledImporter.Import(Scene, "Data/Level2.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 1 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 3 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
@@ -78,6 +86,8 @@ namespace Engineer.Project
                 TiledImporter.Import(Scene, "Data/Level2_2.tmx", 20, 20);
                 Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 8 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 10 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
@@ -146,6 +156,8 @@ namespace Engineer.Project
             DrawnSceneObject Lever = new DrawnSceneObject("Lever", LeverSprite);
             Lever.Visual.Scale = new Vertex(100, 100, 0);
             Lever.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+
+            Lever.Data["Lever"] = true;
            
             ((Sprite)Lever.Visual).UpdateSpriteSet("LeverUp");
             Scene.Data["Lever"+ leverID++] = Lever;
@@ -171,7 +183,9 @@ namespace Engineer.Project
             //Box.Data["P2Coll"] = new CollisionModel();            
             Scene.Data["Door"+ doorID++] = Door;
             Door.Data["Collision"] = Collision2DType.Rectangular;
-            
+
+            Door.Data["Door"] = true;
+
             Scene.AddSceneObject(Door);
         }
         public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
@@ -245,6 +259,29 @@ namespace Engineer.Project
             Scene.Data[Cold.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Cold);
+        }
+        public static void Reset(Scene2D Scene)
+        {
+            List<SceneObject> Boxes = Scene.GetObjectsWithData("Box");
+            List<SceneObject> Doors = Scene.GetObjectsWithData("Door");
+            List<SceneObject> Levers = Scene.GetObjectsWithData("Lever");
+            List<SceneObject> Players = Scene.GetObjectsWithData("Player");
+            for (int i = 0; i < Boxes.Count; i++)
+            {
+                Boxes[i].Visual.Translation = (Vertex)Boxes[i].Data["OriginalLocation"];
+            }
+            for (int i = 0; i < Doors.Count; i++)
+            {
+                Doors[i].Visual.Active = true;
+            }
+            for (int i = 0; i < Levers.Count; i++)
+            {
+                ((Sprite)Levers[i].Visual).SetSpriteSet("LeverUp");
+            }
+            for (int i = 0; i < Players.Count; i++)
+            {
+                Players[i].Visual.Translation = (Vertex)Players[i].Data["OriginalLocation"];
+            }
         }
     }
 }      

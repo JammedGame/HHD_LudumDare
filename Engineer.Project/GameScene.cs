@@ -45,6 +45,10 @@ namespace Engineer.Project
                 ExternRunner Runner = (ExternRunner)this.Data["Runner"];
                 Runner.SwitchScene("Menu", false);
             }
+            if (E.KeyDown == KeyType.Space)
+            {
+                Level.Reset(this);
+            }
         }
         private void ColorUpdates(object Sender, EventArguments E)
         {
