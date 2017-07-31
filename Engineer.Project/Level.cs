@@ -24,20 +24,6 @@ namespace Engineer.Project
 
             if (Index == 0)
             {
-                TiledImporter.Import(Scene, "Data/sample.tmx", 15, 15);
-                Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
-                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
-                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
-                Scene.AddSceneObject(Players[0]);
-                Scene.AddSceneObject(Players[1]);
-
-                GenerateBox(Scene, 3, 3);
-                GenerateLever(Scene, 3, 8);
-                GenerateDoor(Scene, 2, 6);
-            }
-            if (Index == 1)
-            {
                 TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 10 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 11 * 100 + 25, 0);
@@ -56,7 +42,7 @@ namespace Engineer.Project
                 GenerateFire(Scene, 11, 10);
                 GenerateFan(Scene,4,2,1,7);
             }
-            if (Index == 2)
+            if (Index == 1)
             {
                 TiledImporter.Import(Scene, "Data/Level1.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 7 * 100 + 25, 0);
@@ -69,7 +55,7 @@ namespace Engineer.Project
                 GenerateFire(Scene, 7, 4);
              
             }
-            if (Index == 3)
+            if (Index == 2)
             {
                 TiledImporter.Import(Scene, "Data/Level2.tmx", 15, 15);
                 Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 1 * 100 + 25, 0);
@@ -82,7 +68,7 @@ namespace Engineer.Project
                 GenerateFire(Scene, 13, 1);
                 GenerateCold(Scene,7,7);
             }
-            if (Index == 4)
+            if (Index == 3)
             {
                 TiledImporter.Import(Scene, "Data/Level3.tmx", 20, 20);
                 Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 8 * 100 + 25, 0);

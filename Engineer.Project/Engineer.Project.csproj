@@ -54,6 +54,7 @@
     <Compile Include="GameScene.cs" />
     <Compile Include="Glow.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelPicker.cs" />
     <Compile Include="LoadingScene.cs" />
     <Compile Include="LocalSettings.cs" />
     <Compile Include="Mechanics.cs" />
@@ -327,6 +328,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\freezer_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_level_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
