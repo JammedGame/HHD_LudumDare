@@ -45,52 +45,42 @@ namespace Engineer.Project
             }
             if (Index == 1)
             {
-                TiledImporter.Import(Scene, "Data/Level1.tmx", 15, 15);
-                Players[0].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 7 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 8 * 100 + 25, 0);
+                TiledImporter.Import(Scene, "Data/Level01_D.tmx", 10, 10);
+                Players[0].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 7 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 7 * 100 + 25, 0);
                 Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
                 Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
                                 
-                GenerateFire(Scene, 7, 4);
-             
+                GenerateFire(Scene, 4, 3);
+                GenerateExit(Scene, 5, 7);
             }
             if (Index == 2)
             {
-                TiledImporter.Import(Scene, "Data/Level2.tmx", 15, 15);
-                Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 1 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 3 * 100 + 25, 0);
+                TiledImporter.Import(Scene, "Data/Level02_D.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 12 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 12 * 100 + 25, 0);
                 Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
                 Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
-                GenerateFire(Scene, 13, 1);
-                GenerateCold(Scene,7,7);
-                GenerateExit(Scene, 1, 5);
+                GenerateFire(Scene, 3, 5);
+                GenerateCold(Scene,10,9);
+                GenerateExit(Scene, 12, 7);
             }
             if (Index == 3)
             {
-                TiledImporter.Import(Scene, "Data/Level3.tmx", 20, 20);
-                Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 8 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 10 * 100 + 25, 0);
+                TiledImporter.Import(Scene, "Data/Level03_D.tmx", 10, 10);
+                Players[0].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 7 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(4 * 100 + 25, 6 * 100 + 25, 0);
                 Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
                 Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
-
-                Players[0].HeatRange = 100;
-                Players[1].HeatRange = 100;
-
-                Players[0].Heat = Players[0].MaxHeat = 600;
-                Players[1].Heat = Players[1].MaxHeat = 600;
-                
-
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
-
-                GenerateFire(Scene, 11, 7);
-                GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 11, 6));
-                GenerateExit(Scene, 9, 18);
+                GenerateBox(Scene, 4, 5);
+                GenerateExit(Scene, 7, 4);
             }
 
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
@@ -290,7 +280,7 @@ namespace Engineer.Project
             Cold.Data["ColdSource"] = true;
             Cold.Data["Collision"] = Collision2DType.Rectangular;
 
-            DrawnSceneObject GlowDSO = new Glow(Cold.ID + "Glow", Cold, 300, Color.FromArgb(150, 65, 105, 205));
+            DrawnSceneObject GlowDSO = new Glow(Cold.ID + "Glow", Cold, 400, Color.FromArgb(150, 65, 105, 205));
             Scene.Objects.Insert(0, GlowDSO);
             Scene.Data[Cold.ID + "Glow"] = GlowDSO;
 
