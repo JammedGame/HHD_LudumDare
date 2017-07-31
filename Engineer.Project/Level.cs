@@ -1,5 +1,6 @@
 ﻿using Engineer.Engine;
 using Engineer.Mathematics;
+using Engineer.Runner;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -96,6 +97,17 @@ namespace Engineer.Project
                 GenerateLever(Scene, 11, 11);
                 // exit 9, 18
             }
+
+            ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
+            TileCollection SpaceCollection = new TileCollection(ResourceManager.Images["press_space"]);
+            Tile PressSpace = new Tile();
+            PressSpace.Scale = new Vertex(500, 60, 1);
+            PressSpace.Translation = new Vertex(Runner.Width - 550, Runner.Height - 100, 0);
+            PressSpace.Collection = SpaceCollection;
+            PressSpace.Fixed = true;
+            PressSpace.Active = false;
+            DrawnSceneObject SpaceDSO = new DrawnSceneObject("PressSpace", PressSpace);
+            Scene.AddSceneObject(SpaceDSO);
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
         {
@@ -282,6 +294,7 @@ namespace Engineer.Project
             {
                 Players[i].Visual.Translation = (Vertex)Players[i].Data["OriginalLocation"];
             }
+            ((DrawnSceneObject)Scene.Data["PressSpace"]).Active = false;
         }
     }
 }      

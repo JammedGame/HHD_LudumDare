@@ -152,10 +152,9 @@ namespace Engineer.Project
 
             Heat = Math.Max(0, Heat);
 
-            if (Heat == 0)
+            if (((Player)Players[0]).Heat == 0 && ((Player)Players[1]).Heat == 0)
             {
-                // Mreo si
-
+                ((DrawnSceneObject)Scene.Data["PressSpace"]).Active = true;
             }
         }
 
