@@ -62,6 +62,30 @@ namespace Engineer.Project
                 GenerateFire(Scene, 7, 4);
              
             }
+            if (Index == 3)
+            {
+                TiledImporter.Import(Scene, "Data/Level2.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 1 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 3 * 100 + 25, 0);
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+
+                GenerateFire(Scene, 13, 1);
+                GenerateCold(Scene,7,7);
+            }
+            if (Index == 4)
+            {
+                TiledImporter.Import(Scene, "Data/Level2_2.tmx", 20, 20);
+                Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 8 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 10 * 100 + 25, 0);
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+
+                GenerateDoor(Scene, 11, 6);
+                GenerateFire(Scene, 11, 7);
+                GenerateLever(Scene, 11, 11);
+                // exit 9, 18
+            }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
         {
@@ -194,10 +218,24 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Fan);
         }
-        public static void Reset(Scene2D Scene)
+        public static void GenerateCold(Scene2D Scene, int XLocation, int YLocation)
         {
-            List<SceneObject> Boxes = Scene.GetObjectsWithData("Box");
+            SpriteSet ColdSpriteSet = new SpriteSet("Cold");
+            ColdSpriteSet.Sprite.Add(ResourceManager.Images["cold"]);
 
+
+            Sprite ColdSprite = new Sprite();
+            ColdSprite.SpriteSets.Add(ColdSpriteSet);
+
+
+            DrawnSceneObject Cold = new DrawnSceneObject("Cold", ColdSprite);
+            Cold.Visual.Scale = new Vertex(100, 100, 0);
+            Cold.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+
+            Cold.Data["ColdSource"] = true;
+            Cold.Data["Collision"] = Collision2DType.Rectangular;
+
+            Scene.AddSceneObject(Cold);
         }
     }
 }      
