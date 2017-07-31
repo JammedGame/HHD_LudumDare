@@ -264,5 +264,8 @@
   <ItemGroup>
     <None Include="Resources\masina verzija 2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grejac 2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

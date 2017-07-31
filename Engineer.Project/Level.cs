@@ -70,6 +70,25 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Box);
         }
+        public static void GenerateHeater(Scene2D Scene, int XLocation, int YLocation)
+        {
+            SpriteSet Boxset = new SpriteSet("Box");
+            Boxset.Sprite.Add(ResourceManager.Images["grejac_2"]);
+
+            Sprite BoxSprite = new Sprite();
+            BoxSprite.SpriteSets.Add(Boxset);
+
+            DrawnSceneObject Box = new DrawnSceneObject("Box", BoxSprite);
+            Box.Visual.Scale = new Vertex(100, 100, 0);
+            Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+            Box.Data["Box"] = true;
+            Box.Data["P1Coll"] = new CollisionModel();
+            Box.Data["P2Coll"] = new CollisionModel();
+            Box.Data["WallColl"] = new CollisionModel();
+            Box.Data["HeatSource"] = true;
+
+            Scene.AddSceneObject(Box);
+        }
         public static void GenerateLever(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet LeverSpriteSetUp = new SpriteSet("LeverUp");
@@ -92,7 +111,6 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Lever);
         }
-
         public static void GenerateDoor(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet DoorSpriteSet = new SpriteSet("Door");
@@ -114,7 +132,6 @@ namespace Engineer.Project
             
             Scene.AddSceneObject(Door);
         }
-
         public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet FireSpriteSet = new SpriteSet("Fire");
