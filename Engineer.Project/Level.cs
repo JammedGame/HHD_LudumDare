@@ -271,7 +271,7 @@ namespace Engineer.Project
         public static void GenerateCold(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet ColdSpriteSet = new SpriteSet("Cold");
-            ColdSpriteSet.Sprite.Add(ResourceManager.Images["cold"]);
+            for (int i = 0; i < 4; i++) ColdSpriteSet.Sprite.Add(ResourceManager.Images["freezer_0" + (i+1)]);
 
 
             Sprite ColdSprite = new Sprite();
