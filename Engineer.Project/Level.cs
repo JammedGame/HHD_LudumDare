@@ -13,11 +13,14 @@ namespace Engineer.Project
     {
         public static int leverID = 0;
         public static int doorID = 0;
+        public static int fanID = 0;
         
         public static void Generate(Scene2D Scene, int Index, Player[] Players)
         {
             leverID = 0;
             doorID = 0;
+            fanID = 0;
+
             if (Index == 0)
             {
                 TiledImporter.Import(Scene, "Data/sample.tmx", 15, 15);
@@ -145,6 +148,7 @@ namespace Engineer.Project
             Fan.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
             
             Fan.Data["Collision"] = Collision2DType.Rectangular;
+            Scene.Data["Fan" + fanID++] = Fan;
 
             Scene.AddSceneObject(Fan);
         }

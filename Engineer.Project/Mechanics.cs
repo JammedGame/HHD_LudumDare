@@ -22,9 +22,10 @@ namespace Engineer.Project
         }
         public void CheckLever(Player Player1, Player Player2)
         {
-            for (int i=0;i<Level.leverID;i++) {
-                DrawnSceneObject Lever = (DrawnSceneObject)CScene.Data["Lever"+i];
-                DrawnSceneObject Door = (DrawnSceneObject)CScene.Data["Door"+i];
+            for (int i = 0; i < Level.leverID; i++)
+            {
+                DrawnSceneObject Lever = (DrawnSceneObject)CScene.Data["Lever" + i];
+                DrawnSceneObject Door = (DrawnSceneObject)CScene.Data["Door" + i];
                 float P1X = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
                 float P1Y = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
                 float P2X = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
@@ -44,6 +45,12 @@ namespace Engineer.Project
                     Door.Active = false;
                     ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
                 }
+            }
+        }
+        public void CheckFan(Player Player1, Player Player2)
+        {
+            for (int i = 0; i < Level.fanID; i++)
+            {
             }
         }
     }
