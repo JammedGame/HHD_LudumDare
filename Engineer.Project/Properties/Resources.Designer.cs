@@ -103,26 +103,6 @@ namespace Engineer.Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dugme_2_dole {
-            get {
-                object obj = ResourceManager.GetObject("dugme_2_dole", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap dugme_2_gore {
-            get {
-                object obj = ResourceManager.GetObject("dugme_2_gore", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap empty {
             get {
                 object obj = ResourceManager.GetObject("empty", resourceCulture);
@@ -406,6 +386,26 @@ namespace Engineer.Project.Properties {
         internal static System.Drawing.Bitmap press_space {
             get {
                 object obj = ResourceManager.GetObject("press_space", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pressure_down {
+            get {
+                object obj = ResourceManager.GetObject("pressure_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pressure_up {
+            get {
+                object obj = ResourceManager.GetObject("pressure_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

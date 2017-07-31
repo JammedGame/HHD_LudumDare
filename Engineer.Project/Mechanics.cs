@@ -22,7 +22,9 @@ namespace Engineer.Project
         }
         public void CheckLever(Player Player1, Player Player2)
         {
+            List<SceneObject> Boxes = CScene.GetObjectsWithData("Box");
             List<SceneObject> Levers = CScene.GetObjectsWithData("Lever");
+            List<SceneObject> Plates = CScene.GetObjectsWithData("Plate");
             for (int i = 0; i < Levers.Count; i++)
             {
                 DrawnSceneObject Lever = (DrawnSceneObject)Levers[i];
@@ -55,6 +57,47 @@ namespace Engineer.Project
                     {
                         Target.Data["Enabled"] = false;
                         ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                    }
+                }
+            }
+            for (int i = 0; i < Plates.Count; i++)
+            {
+                DrawnSceneObject Plate = (DrawnSceneObject)Plates[i];
+                DrawnSceneObject Target = (DrawnSceneObject)CScene.Data[(string)Plate.Data["Target"]];
+
+                bool Pressed = false;
+                if (Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Plate.Visual.Translation, Plate.Visual.Scale, Collision2DType.Rectangular)) Pressed = true;
+                if (Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Plate.Visual.Translation, Plate.Visual.Scale, Collision2DType.Rectangular)) Pressed = true;
+                for(int j = 0; j < Boxes.Count; j++)
+                {
+                    if (Collision2D.Check(Boxes[j].Visual.Translation, Boxes[j].Visual.Scale, Plate.Visual.Translation, Plate.Visual.Scale, Collision2DType.Rectangular)) Pressed = true;
+                }
+                if(Pressed)
+                {
+                    if (Target.Data.ContainsKey("Door"))
+                    {
+                        Target.Data.Remove("Collision");
+                        Target.Active = false;
+                        ((Sprite)Plate.Visual).UpdateSpriteSet("LeverDown");
+                    }
+                    else if (Target.Data.ContainsKey("Fan"))
+                    {
+                        Target.Data["Enabled"] = false;
+                        ((Sprite)Plate.Visual).UpdateSpriteSet("LeverDown");
+                    }
+                }
+                else
+                {
+                    if (Target.Data.ContainsKey("Door"))
+                    {
+                        Target.Data["Collision"] = true;
+                        Target.Active = true;
+                        ((Sprite)Plate.Visual).UpdateSpriteSet("LeverUp");
+                    }
+                    else if (Target.Data.ContainsKey("Fan"))
+                    {
+                        Target.Data["Enabled"] = true;
+                        ((Sprite)Plate.Visual).UpdateSpriteSet("LeverDown");
                     }
                 }
             }

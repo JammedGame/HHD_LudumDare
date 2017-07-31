@@ -35,7 +35,7 @@ namespace Engineer.Project
                 GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 6, 11));
                 GenerateLever(Scene, 11, 8, GenerateDoor(Scene, 7, 6));
                 GenerateLever(Scene, 5, 11, GenerateDoor(Scene, 8, 7));
-                GenerateLever(Scene, 9, 4, GenerateFan(Scene, 4, 2, 1, 7));
+                GeneratePresurePlate(Scene, 9, 4, GenerateFan(Scene, 4, 2, 1, 7));
                 GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
             }
@@ -166,6 +166,29 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Lever);
         }
+        public static void GeneratePresurePlate(Scene2D Scene, int XLocation, int YLocation, string TargetID)
+        {
+            SpriteSet LeverSpriteSetUp = new SpriteSet("LeverUp");
+            SpriteSet LeverSpriteSetDown = new SpriteSet("LeverDown");
+
+            LeverSpriteSetUp.Sprite.Add(ResourceManager.Images["pressure_up"]);
+            LeverSpriteSetDown.Sprite.Add(ResourceManager.Images["pressure_down"]);
+
+            Sprite LeverSprite = new Sprite();
+            LeverSprite.SpriteSets.Add(LeverSpriteSetUp);
+            LeverSprite.SpriteSets.Add(LeverSpriteSetDown);
+
+            DrawnSceneObject Lever = new DrawnSceneObject("Lever", LeverSprite);
+            Lever.Visual.Scale = new Vertex(100, 100, 0);
+            Lever.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+
+            Lever.Data["Plate"] = true;
+            Lever.Data["Target"] = TargetID;
+
+            LeverSprite.UpdateSpriteSet("LeverUp");
+
+            Scene.AddSceneObject(Lever);
+        }
         public static string GenerateDoor(Scene2D Scene, int XLocation, int YLocation)
         {
             SpriteSet DoorSpriteSet = new SpriteSet("Door");
@@ -282,6 +305,7 @@ namespace Engineer.Project
             for (int i = 0; i < Doors.Count; i++)
             {
                 Doors[i].Visual.Active = true;
+                Doors[i].Data["Collision"] = true;
             }
             for (int i = 0; i < Fans.Count; i++)
             {

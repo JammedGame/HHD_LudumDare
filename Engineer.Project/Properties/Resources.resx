@@ -148,10 +148,10 @@
   <data name="glow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\radialglow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dugme_2_dole" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="pressure_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dugme 2 dole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dugme_2_gore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="pressure_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dugme 2 gore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="heat" type="System.Resources.ResXFileRef, System.Windows.Forms">
