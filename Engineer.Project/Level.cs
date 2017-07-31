@@ -162,6 +162,10 @@ namespace Engineer.Project
             Fire.Data["HeatSource"] = true;
             Fire.Data["Collision"] = Collision2DType.Rectangular;
 
+            DrawnSceneObject GlowDSO = new Glow(Fire.ID + "Glow", Fire, 300, Color.FromArgb(150, 204, 0, 0));
+            Scene.Objects.Insert(0, GlowDSO);
+            Scene.Data[Fire.ID + "Glow"] = GlowDSO;
+
             Scene.AddSceneObject(Fire);
         }
         public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation, int Direction, int Range)

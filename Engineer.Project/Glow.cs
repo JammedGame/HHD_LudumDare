@@ -20,7 +20,7 @@ namespace Engineer.Project
             Glow.SpriteSets.Add(GlowSet);
             this.Visual = Glow;
             Glow.Paint = Paint;
-            Glow.Translation = new Vertex(Parent.Visual.Translation.X  - Size / 2 + Parent.Visual.Scale.X, Parent.Visual.Translation.Y - Size / 2 + Parent.Visual.Scale.Y, 0);
+            Glow.Translation = new Vertex(Parent.Visual.Translation.X  - Size / 2 + Parent.Visual.Scale.X / 2, Parent.Visual.Translation.Y - Size / 2 + Parent.Visual.Scale.Y / 2, 0);
             Glow.Scale = new Vertex(Size, Size, 1);
         }
     }
