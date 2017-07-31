@@ -178,9 +178,9 @@ namespace Engineer.Engine
             return New;
         }
 
-        public double GetDistance(DrawnSceneObject Other)
+        public float GetDistance(DrawnSceneObject Other)
         {
-            return Math.Sqrt(Math.Pow(this.Visual.Translation.X - Other.Visual.Translation.X, 2) + Math.Pow(this.Visual.Translation.Y - Other.Visual.Translation.Y, 2));
+            return (float)Math.Sqrt(Math.Pow(this.Visual.Translation.X - Other.Visual.Translation.X, 2) + Math.Pow(this.Visual.Translation.Y - Other.Visual.Translation.Y, 2));
 
         }
     }

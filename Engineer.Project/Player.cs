@@ -13,8 +13,8 @@ namespace Engineer.Project
     public class Player:DrawnSceneObject
     {
         public static int id=1;
-        private double Heat;
-        private double MaxHeat;
+        private double _Heat;
+        private double _MaxHeat;
 
         private Scene2D Scene;
         private Sprite HealthBar;
@@ -74,7 +74,9 @@ namespace Engineer.Project
             this.HealthBar = (Sprite)Health.Visual;
         }
 
-     
+        public double Heat { get => _Heat; set => _Heat = value; }
+        public double MaxHeat { get => _MaxHeat; set => _MaxHeat = value; }
+
         public void GameUpdate(Game G, EventArguments E)
         {
 

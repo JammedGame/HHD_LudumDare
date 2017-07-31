@@ -122,6 +122,22 @@ namespace Engineer.Project
                 _Num6 = false;
             }
         }
+
+        public float MovementRate(Player P)
+        {
+            double movementRate;
+            if (P.Heat * 100 / P.MaxHeat < 10)
+            {
+                movementRate = 3*(P.Heat * 100 / P.MaxHeat)/10 ;
+            }
+            else
+            {
+                movementRate = 5- (100 - P.Heat * 100 / P.MaxHeat)/45;
+            }
+            
+            return (float)movementRate;
+        }
+
         public void GameUpdate(Game G, EventArguments E)
         {
             LSO = CScene.GetObjectsWithData("Collision");
@@ -139,7 +155,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if(Able)this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MoveSpeed, 0);
+                if(Able)this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y - MovementRate(Player1), 0);
             }
             if (_ADown && !P1Wall.Left && !P1Other.Left)
             {
@@ -155,7 +171,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - MoveSpeed, Player1.Visual.Translation.Y, 0);
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X - MovementRate(Player1), Player1.Visual.Translation.Y, 0);
             }
             if (_SDown && !P1Wall.Bottom && !P1Other.Bottom)
             {
@@ -171,7 +187,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + MoveSpeed, 0);
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X, Player1.Visual.Translation.Y + MovementRate(Player1), 0);
             }
             if (_DDown && !P1Wall.Right && !P1Other.Right)
             {
@@ -187,7 +203,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MoveSpeed, Player1.Visual.Translation.Y, 0);
+                if (Able) this.Player1.Visual.Translation = new Vertex(Player1.Visual.Translation.X + MovementRate(Player1), Player1.Visual.Translation.Y, 0);
             }
             if (_Num8 && !P2Wall.Top && !P2Other.Top)
             {
