@@ -52,6 +52,7 @@
     <Compile Include="GameHelpers.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameScene.cs" />
+    <Compile Include="Glow.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LoadingScene.cs" />
     <Compile Include="LocalSettings.cs" />

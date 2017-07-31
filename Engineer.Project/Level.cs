@@ -75,6 +75,7 @@ namespace Engineer.Project
             Box.Visual.Scale = new Vertex(100, 100, 0);
             Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
             Box.Data["Box"] = true;
+            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100, YLocation * 100, 0);
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
             Box.Data["WallColl"] = new CollisionModel();
@@ -93,6 +94,7 @@ namespace Engineer.Project
             Box.Visual.Scale = new Vertex(100, 100, 0);
             Box.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
             Box.Data["Box"] = true;
+            Box.Data["OriginalLocation"] = new Vertex(XLocation * 100, YLocation * 100, 0);
             Box.Data["P1Coll"] = new CollisionModel();
             Box.Data["P2Coll"] = new CollisionModel();
             Box.Data["WallColl"] = new CollisionModel();
@@ -187,6 +189,11 @@ namespace Engineer.Project
             Scene.Data[Fan.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Fan);
+        }
+        public static void Reset(Scene2D Scene)
+        {
+            List<SceneObject> Boxes = Scene.GetObjectsWithData("Box");
+
         }
     }
 }      

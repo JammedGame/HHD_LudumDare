@@ -18,22 +18,9 @@ namespace Engineer.Project
 
         private Scene2D Scene;
         private Sprite HealthBar;
-        private Sprite PlayerGlow;
-
 
         public Player(Scene2D CScene)
         {
-            if(PlayerGlow == null)
-            {
-                SpriteSet GlowSet = new SpriteSet("Glow");
-                GlowSet.Sprite.Add(ResourceManager.Images["kuglica_01"]);
-                PlayerGlow = new Sprite();
-                PlayerGlow.SpriteSets.Add(GlowSet);
-                PlayerGlow.Translation = new Vertex(-125, -125, 0);
-                PlayerGlow.Scale = new Vertex(300, 300, 1);
-                PlayerGlow.Paint = Color.FromArgb(150, 204,0,0);
-            }
-
             this.Scene = CScene;
             MaxHeat = Heat = 1000;
 
@@ -53,14 +40,17 @@ namespace Engineer.Project
 
             id += 1;
 
-            Sprite Glow = new Sprite(PlayerGlow);
-            DrawnSceneObject GlowDSO = new DrawnSceneObject("P" + id + "Glow", Glow);
+            DrawnSceneObject GlowDSO;
             if (id == 2)
             {
-                Glow.Paint = Color.FromArgb(150, 255, 140, 0);
+                GlowDSO = new Glow("P" + id + "Glow", this, 300, Color.FromArgb(150, 255, 140, 0));
                 GlowDSO.Data["ColorModel"] = 2;
             }
-            else GlowDSO.Data["ColorModel"] = 1;
+            else
+            {
+                GlowDSO = new Glow("P" + id + "Glow", this, 300, Color.FromArgb(150, 204, 0, 0));
+                GlowDSO.Data["ColorModel"] = 1;
+            }
 
             CScene.Objects.Insert(0, GlowDSO);
             CScene.Data[this.ID + "Glow"] = GlowDSO;
