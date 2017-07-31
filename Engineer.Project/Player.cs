@@ -136,7 +136,9 @@ namespace Engineer.Project
 
                 }
 
-                float Value = (float)Heat / (float)MaxHeat;
+                float MinHeat = (float)Heat;
+                if (MinHeat < 0) MinHeat = 0;
+                float Value = MinHeat / (float)MaxHeat;
                 DrawnSceneObject PlayerGlow = (DrawnSceneObject)Scene.Data[Player.ID + "Glow"];
                 if((int)PlayerGlow.Data["ColorModel"] == 2)
                 {
