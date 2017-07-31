@@ -83,9 +83,39 @@ namespace Engineer.Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dugme_2_dole {
+            get {
+                object obj = ResourceManager.GetObject("dugme_2_dole", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dugme_2_gore {
+            get {
+                object obj = ResourceManager.GetObject("dugme_2_gore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glow {
             get {
                 object obj = ResourceManager.GetObject("glow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heat {
+            get {
+                object obj = ResourceManager.GetObject("heat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -316,6 +346,56 @@ namespace Engineer.Project.Properties {
         internal static System.Drawing.Bitmap vatra {
             get {
                 object obj = ResourceManager.GetObject("vatra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ventilator_1 {
+            get {
+                object obj = ResourceManager.GetObject("ventilator_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ventilator_2 {
+            get {
+                object obj = ResourceManager.GetObject("ventilator_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ventilator_3 {
+            get {
+                object obj = ResourceManager.GetObject("ventilator_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ventilator_4 {
+            get {
+                object obj = ResourceManager.GetObject("ventilator_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ventilator_5 {
+            get {
+                object obj = ResourceManager.GetObject("ventilator_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
