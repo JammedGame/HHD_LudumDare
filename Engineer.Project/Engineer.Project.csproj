@@ -254,5 +254,8 @@
   <ItemGroup>
     <None Include="Resources\KUTIJA NOVOOO.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\press space.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
