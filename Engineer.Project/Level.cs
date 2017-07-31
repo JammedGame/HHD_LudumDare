@@ -18,6 +18,7 @@ namespace Engineer.Project
 
         public static void Generate(Scene2D Scene, int Index, Player[] Players)
         {
+            Player.id = 0;
             leverID = 0;
             doorID = 0;
             fanID = 0;
