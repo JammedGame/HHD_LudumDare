@@ -245,5 +245,14 @@
   <ItemGroup>
     <None Include="Resources\ventilator 5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poluga_up %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poluga_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KUTIJA NOVOOO.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

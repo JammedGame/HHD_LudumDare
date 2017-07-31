@@ -121,9 +121,6 @@
   <data name="kuglica_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kuglica_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="kutija_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kutija 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="progress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\progress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,12 +147,6 @@
   </data>
   <data name="tile_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zid_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="lever_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lever_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="lever_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lever_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="glow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\radialglow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -225,5 +216,14 @@
   </data>
   <data name="ventilator_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ventilator 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kutija_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KUTIJA NOVOOO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lever_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\poluga_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lever_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\poluga_up (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
