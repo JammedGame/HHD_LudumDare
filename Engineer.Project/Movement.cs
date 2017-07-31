@@ -255,6 +255,9 @@ namespace Engineer.Project
             }
             PlayersCollision();
 
+            ((DrawnSceneObject)CScene.Data[Player1.ID + "Glow"]).Visual.Translation = new Vertex(Player1.Visual.Translation.X - 125, Player1.Visual.Translation.Y - 125, 0);
+            ((DrawnSceneObject)CScene.Data[Player2.ID + "Glow"]).Visual.Translation = new Vertex(Player2.Visual.Translation.X - 125, Player2.Visual.Translation.Y - 125, 0);
+
             this.Mechanics.CheckLever(Player1,Player2);
         }
         private void PlayersCollision()

@@ -26,12 +26,12 @@ namespace Engineer.Project
             if(PlayerGlow == null)
             {
                 SpriteSet GlowSet = new SpriteSet("Glow");
-                GlowSet.Sprite.Add(ResourceManager.Images["glow"]);
+                GlowSet.Sprite.Add(ResourceManager.Images["kuglica_01"]);
                 PlayerGlow = new Sprite();
                 PlayerGlow.SpriteSets.Add(GlowSet);
                 PlayerGlow.Translation = new Vertex(-120, -120, 0);
                 PlayerGlow.Scale = new Vertex(300, 300, 1);
-                PlayerGlow.Paint = Color.FromArgb(204,0,0);
+                PlayerGlow.Paint = Color.FromArgb(150, 204,0,0);
             }
 
             this.Scene = CScene;
@@ -44,12 +44,26 @@ namespace Engineer.Project
             Sprite PlayerSprite = new Sprite();
             PlayerSprite.SpriteSets.Add(Player);
 
+            
+
             this.Visual = PlayerSprite;
             this.Visual.Scale = new Vertex(50, 50, 0);
             this.Visual.Translation = new Vertex(100 * id, 100 * id, 0);
             CScene.Events.Extern.TimerTick += new GameEventHandler(GameUpdate);
 
             id += 1;
+
+            Sprite Glow = new Sprite(PlayerGlow);
+            DrawnSceneObject GlowDSO = new DrawnSceneObject("P" + id + "Glow", Glow);
+            if (id == 2)
+            {
+                Glow.Paint = Color.FromArgb(150, 255, 140, 0);
+                GlowDSO.Data["ColorModel"] = 2;
+            }
+            else GlowDSO.Data["ColorModel"] = 1;
+
+            CScene.Objects.Insert(0, GlowDSO);
+            CScene.Data[this.ID + "Glow"] = GlowDSO;
 
             this.Data["Player"] = true;
 
@@ -95,6 +109,7 @@ namespace Engineer.Project
             foreach(SceneObject SceneObj in Players)
             {
                 Player Player = (Player)SceneObj;
+
                 if (Player != this)
                 {
                     double distance = Player.GetDistance(this);
@@ -119,6 +134,19 @@ namespace Engineer.Project
 
                     Heat -= distance / 150;
 
+                }
+
+                float Value = (float)Heat / (float)MaxHeat;
+                DrawnSceneObject PlayerGlow = (DrawnSceneObject)Scene.Data[Player.ID + "Glow"];
+                if((int)PlayerGlow.Data["ColorModel"] == 2)
+                {
+                    Sprite Glow = (Sprite)PlayerGlow.Visual;
+                    Glow.Paint = Color.FromArgb(150, (int)(Value * 255), (int)(140 + (1-Value) * 51), (int)((1 - Value) * 255));
+                }
+                else
+                {
+                    Sprite Glow = (Sprite)PlayerGlow.Visual;
+                    Glow.Paint = Color.FromArgb(150, (int)(65 + Value * 149), (int)((1 - Value) * 105), (int)((1 - Value) * 205));
                 }
             }
 
