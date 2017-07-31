@@ -257,5 +257,11 @@
   <ItemGroup>
     <None Include="Resources\press space.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vrata verzija 5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\masina verzija 2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
