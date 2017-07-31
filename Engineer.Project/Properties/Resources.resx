@@ -277,4 +277,13 @@
   <data name="back_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menu_level_back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lvl1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lvl1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lvl2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lvl2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lvl3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lvl3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

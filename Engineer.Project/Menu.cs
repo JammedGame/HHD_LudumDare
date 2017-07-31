@@ -32,12 +32,12 @@ namespace Engineer.Project
             PlayTile.Collection = Buttons;
             PlayTile.SetIndex(0);
             PlayTile.Scale = new Vertex(250, 60, 1);
-            PlayTile.Translation = new Vertex(800, 800, 0);
+            PlayTile.Translation = new Vertex(835, 800, 0);
             Tile QuitTile = new Tile();
             QuitTile.Collection = Buttons;
             QuitTile.SetIndex(1);
             QuitTile.Scale = new Vertex(250, 60, 1);
-            QuitTile.Translation = new Vertex(800, 900, 0);
+            QuitTile.Translation = new Vertex(835, 900, 0);
             Tile Title = new Tile();
             Title.Collection = Titles;
             Title.SetIndex(1);
@@ -56,34 +56,8 @@ namespace Engineer.Project
         }
         private void PlayClick(object sender, EventArguments e)
         {
-            Game CurrentGame = (Game)this.Data["Game"];
             ExternRunner Runner = (ExternRunner)this.Data["Runner"];
-            GameScene OldGame = null;
-            if (CurrentGame.Data.ContainsKey("GameScene"))
-            {
-                OldGame = (GameScene)CurrentGame.Data["GameScene"];
-                CurrentGame.Scenes.Remove(OldGame);
-            }
-            GameScene NewGame = new GameScene();
-            NewGame.Data["Game"] = CurrentGame;
-            NewGame.Data["Runner"] = Runner;
-            NewGame.Init();
-            LoadingScene Loading;
-            if (!CurrentGame.Data.ContainsKey("LoadingScene"))
-            {
-                Loading = new LoadingScene();
-                CurrentGame.AddScene(Loading);
-                Loading.Data["Game"] = CurrentGame;
-                Loading.Data["Runner"] = Runner;
-            }
-            else
-            {
-                Loading = (LoadingScene)CurrentGame.Data["LoadingScene"];
-                Loading.Reset();
-            }
-            Runner.SwitchScene("LoadingScene", false);
-            CurrentGame.AddScene(NewGame);
-            Runner.SwitchScene("GameScene");
+            Runner.SwitchScene("LevelPicker", false);
         }
         private void QuitClick(object sender, EventArguments e)
         {

@@ -25,6 +25,8 @@ namespace Engineer.Project
             this._Runner = new ExternRunner((int)LocalSettings.Window.X, (int)LocalSettings.Window.Y, "Dissipate");
             Menu.Data["Game"] = this._Game;
             Menu.Data["Runner"] = this._Runner;
+            Picker.Data["Game"] = this._Game;
+            Picker.Data["Runner"] = this._Runner;
             this._Runner.SetWindowState(LocalSettings.State);
             this._Runner.Init(this._Game);
             
