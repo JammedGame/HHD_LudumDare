@@ -12,6 +12,8 @@ namespace Engineer.Project
     public class Level
     {
         public static int leverID = 0;
+        public static int doorID = 0;
+        
         public static void Generate(Scene2D Scene, int Index, Player[] Players)
         {
             if (Index == 0)
@@ -34,13 +36,14 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
+                GenerateLever(Scene, 11, 11);
                 GenerateDoor(Scene, 6, 11);
+                GenerateLever(Scene, 11, 8);
                 GenerateDoor(Scene, 7, 6);
                 GenerateDoor(Scene, 8, 7);
-                GenerateLever(Scene, 11, 8);
-                GenerateLever(Scene, 11, 11);
                 GenerateLever(Scene, 5, 11);
                 GenerateBox(Scene, 10, 7);
+                GenerateFire(Scene, 11, 10);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
@@ -100,10 +103,40 @@ namespace Engineer.Project
 
             //Box.Data["P1Coll"] = new CollisionModel();
             //Box.Data["P2Coll"] = new CollisionModel();            
-            Scene.Data["Door"] = Door;
+            Scene.Data["Door"+ doorID++] = Door;
             Door.Data["Collision"] = Collision2DType.Rectangular;
             
             Scene.AddSceneObject(Door);
         }
+
+        public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
+        {
+            SpriteSet FireSpriteSet = new SpriteSet("Fire");
+            FireSpriteSet.Sprite.Add(ResourceManager.Images["fire"]);
+
+
+            Sprite FireSprite = new Sprite();
+            FireSprite.SpriteSets.Add(FireSpriteSet);
+
+
+            DrawnSceneObject Fire = new DrawnSceneObject("Fire", FireSprite);
+            Fire.Visual.Scale = new Vertex(100, 100, 0);
+            Fire.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+
+            //Box.Data["P1Coll"] = new CollisionModel();
+            //Box.Data["P2Coll"] = new CollisionModel();            
+            Fire.Data["HeatSource"] = true;
+            Fire.Data["Collision"] = Collision2DType.Rectangular;
+
+            Scene.AddSceneObject(Fire);
+        }
+
+        // Privremeno da ga napravimo
+        /*public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
+        {
+            DrawnSceneObject Fire = GameHelpers.createSprite("progress", new Vertex(600, 600, 0), new Vertex(100, 100, 0));
+            Fire.Data["HeatSource"] = true;
+            Scene.AddSceneObject(Fire);
+        }*/
     }
 }      

@@ -23,27 +23,29 @@ namespace Engineer.Project
         }
         public void CheckLever(Player Player1, Player Player2)
         {
-            DrawnSceneObject Lever = (DrawnSceneObject)CScene.Data["Lever"];
-            DrawnSceneObject Door = (DrawnSceneObject)CScene.Data["Door"];
-            float P1X = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
-            float P1Y = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
-            float P2X = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
-            float P2Y = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y / 2;
-            float LX = Lever.Visual.Translation.X + Lever.Visual.Scale.X / 2;
-            float LY = Lever.Visual.Translation.Y + Lever.Visual.Scale.Y / 2;
+            for (int i=0;i<Level.leverID;i++) {
+                DrawnSceneObject Lever = (DrawnSceneObject)CScene.Data["Lever"+i];
+                DrawnSceneObject Door = (DrawnSceneObject)CScene.Data["Door"+i];
+                float P1X = Player1.Visual.Translation.X + Player1.Visual.Scale.X / 2;
+                float P1Y = Player1.Visual.Translation.Y + Player1.Visual.Scale.Y / 2;
+                float P2X = Player2.Visual.Translation.X + Player2.Visual.Scale.X / 2;
+                float P2Y = Player2.Visual.Translation.Y + Player2.Visual.Scale.Y / 2;
+                float LX = Lever.Visual.Translation.X + Lever.Visual.Scale.X / 2;
+                float LY = Lever.Visual.Translation.Y + Lever.Visual.Scale.Y / 2;
 
-            if (Collision2D.Check(Player1.Visual.Translation,Player1.Visual.Scale,Lever.Visual.Translation,Lever.Visual.Scale,Collision2DType.Rectangular))
-            {
-                Door.Data.Remove("Collision");
-                Door.Active = false;
-                ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                if (Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Lever.Visual.Translation, Lever.Visual.Scale, Collision2DType.Rectangular))
+                {
+                    Door.Data.Remove("Collision");
+                    Door.Active = false;
+                    ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                }
+                if (Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Lever.Visual.Translation, Lever.Visual.Scale, Collision2DType.Rectangular))
+                {
+                    Door.Data.Remove("Collision");
+                    Door.Active = false;
+                    ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
+                }
             }
-            if (Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Lever.Visual.Translation, Lever.Visual.Scale, Collision2DType.Rectangular))
-            {
-                Door.Data.Remove("Collision");
-                Door.Active = false;
-                ((Sprite)Lever.Visual).UpdateSpriteSet("LeverDown");
-            }          
         }
     }
 }
