@@ -84,11 +84,18 @@ namespace Engineer.Project
             }
             if (Index == 4)
             {
-                TiledImporter.Import(Scene, "Data/Level2_2.tmx", 20, 20);
+                TiledImporter.Import(Scene, "Data/Level3.tmx", 20, 20);
                 Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 8 * 100 + 25, 0);
                 Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 10 * 100 + 25, 0);
                 Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
                 Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
+
+                Players[0].HeatRange = 100;
+                Players[1].HeatRange = 100;
+
+                Players[0].MaxHeat = 200;
+                Players[1].MaxHeat = 200;
+
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 

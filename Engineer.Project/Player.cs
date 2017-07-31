@@ -15,9 +15,22 @@ namespace Engineer.Project
         public static int id=1;
         private double _Heat;
         private double _MaxHeat;
+        private int HeatSourceRange=150;
+        private int ColdSourceRange = 200;
 
         private Scene2D Scene;
         private Sprite HealthBar;
+
+        public int HeatRange
+        {
+            get { return HeatSourceRange; }
+            set { HeatSourceRange = value; }
+        }
+        public int ColdRange
+        {
+            get { return ColdSourceRange; }
+            set { ColdSourceRange = value; }
+        }
 
         public Player(Scene2D CScene)
         {
@@ -82,7 +95,7 @@ namespace Engineer.Project
 
             foreach (SceneObject HeatSource in Scene.GetObjectsWithData("HeatSource"))
             {
-                if (this.GetDistance((DrawnSceneObject)HeatSource) < 150)
+                if (this.GetDistance((DrawnSceneObject)HeatSource) < HeatSourceRange)
                 {
                     Heat = Math.Min(Heat + 5, MaxHeat);
                 }
@@ -90,7 +103,7 @@ namespace Engineer.Project
 
             foreach (SceneObject HeatSource in Scene.GetObjectsWithData("ColdSource"))
             {
-                if (this.GetDistance((DrawnSceneObject)HeatSource) < 150)
+                if (this.GetDistance((DrawnSceneObject)HeatSource) < ColdSourceRange)
                 {
                     Heat -= 3;
                 }

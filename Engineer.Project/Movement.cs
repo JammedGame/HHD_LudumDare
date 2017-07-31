@@ -212,14 +212,14 @@ namespace Engineer.Project
                 {
                     if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && !((CollisionModel)Boxes[i].Data["WallColl"]).Top)
                     {
-                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MoveSpeed, 0);
+                        Boxes[i].Visual.Translation = new Vertex(Boxes[i].Visual.Translation.X, Boxes[i].Visual.Translation.Y - MovementRate(Player2), 0);
                     }
                     else if (((CollisionModel)Boxes[i].Data["P2Coll"]).Top && ((CollisionModel)Boxes[i].Data["WallColl"]).Top)
                     {
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MoveSpeed, 0);
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y - MovementRate(Player2), 0);
             }
             if (_Num4 && !P2Wall.Left && !P2Other.Left)
             {
@@ -235,7 +235,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MoveSpeed, Player2.Visual.Translation.Y, 0);
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X - MovementRate(Player2), Player2.Visual.Translation.Y, 0);
             }
             if (_Num5 && !P2Wall.Bottom && !P2Other.Bottom)
             {
@@ -251,7 +251,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MoveSpeed, 0);
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X, Player2.Visual.Translation.Y + MovementRate(Player2), 0);
             }
             if (_Num6 && !P2Wall.Right && !P2Other.Right)
             {
@@ -267,7 +267,7 @@ namespace Engineer.Project
                         Able = false;
                     }
                 }
-                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MoveSpeed, Player2.Visual.Translation.Y, 0);
+                if (Able) this.Player2.Visual.Translation = new Vertex(Player2.Visual.Translation.X + MovementRate(Player2), Player2.Visual.Translation.Y, 0);
             }
             PlayersCollision();
 
