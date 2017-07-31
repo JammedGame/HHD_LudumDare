@@ -36,7 +36,7 @@ namespace Engineer.Project
                         {
                             for (int j = 0; j < Height; j++)
                             {
-                                int Current = Convert.ToInt32(Values[Index]) - 1;
+                                int Current = Convert.ToInt32(Values[Index]) - 2;
                                 Indices[j, i] = Current;
                                 Index++;
                             }
@@ -70,7 +70,10 @@ namespace Engineer.Project
                 CreateCollisionTile(Scene, ColliderColleciton[i].Location.X, ColliderColleciton[i].Location.Y, ColliderColleciton[i].Size.X, ColliderColleciton[i].Size.Y);
             }
             TileCollection Collection = new TileCollection();
-            Collection.TileImages.Add(ResourceManager.Images["zidici_2"]);
+            for (int i = 0; i < 12; i++)
+            {
+                Collection.TileImages.Add(ResourceManager.Images["tile_"+i]);
+            }
             TileMap Map = new TileMap();
             Map.FieldSize = TiledImporter.FieldSize;
             Map.MapCollection = Collection;

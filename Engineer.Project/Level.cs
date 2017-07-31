@@ -28,15 +28,19 @@ namespace Engineer.Project
             }
             if (Index == 1)
             {
-                TiledImporter.Import(Scene, "Data/untitled1.tmx", 15, 15);
-                Players[0].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 2 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 3 * 100 + 25, 0);
+                TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 10 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 11 * 100 + 25, 0);
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
 
-                GenerateBox(Scene, 3, 3);
-                GenerateLever(Scene, 3, 8);
-                GenerateDoor(Scene, 2, 6);
+                GenerateDoor(Scene, 6, 11);
+                GenerateDoor(Scene, 7, 6);
+                GenerateDoor(Scene, 8, 7);
+                GenerateLever(Scene, 11, 8);
+                GenerateLever(Scene, 11, 11);
+                GenerateLever(Scene, 5, 11);
+                GenerateBox(Scene, 10, 7);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)

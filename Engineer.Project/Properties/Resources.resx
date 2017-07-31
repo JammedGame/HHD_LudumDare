@@ -148,14 +148,8 @@
   <data name="zid_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zid_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="zid_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="tile_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zid_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zidici_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zidici 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zidici_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zidici 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lever_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lever_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -174,5 +168,38 @@
   </data>
   <data name="quit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dugme_quit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZID 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barrel barell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plinska bocaaa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZID 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_prav1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_vertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_angle_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_ugao1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_angle_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe_angle_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\masina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

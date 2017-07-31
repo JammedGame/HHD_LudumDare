@@ -188,5 +188,38 @@
   <ItemGroup>
     <None Include="Resources\dugme_quit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZID 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZID 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_angle_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_angle_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_angle_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_prav1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_ugao1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barrel barell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\masina.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plinska bocaaa.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
