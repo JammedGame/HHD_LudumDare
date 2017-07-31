@@ -70,19 +70,19 @@ namespace Engineer.Project
             {
                 _DDown = true;
             }
-            if (E.KeyDown == KeyType.Keypad8)
+            if (E.KeyDown == KeyType.Keypad8 || E.KeyDown == KeyType.Up)
             {
                 _Num8 = true;
             }
-            if (E.KeyDown == KeyType.Keypad4)
+            if (E.KeyDown == KeyType.Keypad4 || E.KeyDown == KeyType.Left)
             {
                 _Num4 = true;
             }
-            if (E.KeyDown == KeyType.Keypad5)
+            if (E.KeyDown == KeyType.Keypad5 || E.KeyDown == KeyType.Down)
             {
                 _Num5 = true;
             }
-            if (E.KeyDown == KeyType.Keypad6)
+            if (E.KeyDown == KeyType.Keypad6 || E.KeyDown == KeyType.Right)
             {
                 _Num6 = true;
             }
@@ -105,19 +105,19 @@ namespace Engineer.Project
             {
                 _DDown = false;
             }
-            if (E.KeyDown == KeyType.Keypad8)
+            if (E.KeyDown == KeyType.Keypad8 || E.KeyDown == KeyType.Up)
             {
                 _Num8 = false;
             }
-            if (E.KeyDown == KeyType.Keypad4)
+            if (E.KeyDown == KeyType.Keypad4 || E.KeyDown == KeyType.Left)
             {
                 _Num4 = false;
             }
-            if (E.KeyDown == KeyType.Keypad5)
+            if (E.KeyDown == KeyType.Keypad5 || E.KeyDown == KeyType.Down)
             {
                 _Num5 = false;
             }
-            if (E.KeyDown == KeyType.Keypad6)
+            if (E.KeyDown == KeyType.Keypad6 || E.KeyDown == KeyType.Right)
             {
                 _Num6 = false;
             }
