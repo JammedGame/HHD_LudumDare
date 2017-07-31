@@ -47,27 +47,54 @@ namespace Engineer.Project
                 }
             }
         }
-        public void CheckFan(Player Player1, Player Player2)
+        public void CheckFan()
         {
             List<SceneObject> Fans = CScene.GetObjectsWithData("Fan");
             List<SceneObject> Boxes = CScene.GetObjectsWithData("Box");
             for (int i = 0; i < Fans.Count; i++)
             {
-                Fans[i].Data["Range"] = (int)Fans[i].Data["MaxRange"];
+                Sprite Fan = (Sprite)Fans[i].Visual;
+                int Direction = (int)Fans[i].Data["Direction"];
+                int Range = (int)Fans[i].Data["MaxRange"];
                 for (int j = 0; j < Boxes.Count; j++)
                 {
-                    Sprite Fan = (Sprite)Fans[i].Visual;
+                    int NewRange = Range;
                     Sprite Box = (Sprite)Boxes[j].Visual;
-                    int Direction = (int)Fans[i].Data["Direction"];
-                    int Range = (int)Fans[i].Data["Range"];
-                    int MaxRange = (int)Fans[i].Data["MaxRange"];
                     if(Direction == 0)
                     {
-                        if(Math.Abs(Fan.Translation.Y - Box.Translation.X) < 50 && Box.Translation.Y < Fan.Translation.Y)
+                        if(Math.Abs(Fan.Translation.X - Box.Translation.X) < 50 && Box.Translation.Y < Fan.Translation.Y)
                         {
-
+                            NewRange = (int)(Fan.Translation.Y - (Box.Translation.Y + Box.Scale.Y));
                         }
                     }
+                    if (Direction == 1)
+                    {
+                        if (Math.Abs(Fan.Translation.Y - Box.Translation.Y) < 50 && Box.Translation.X > Fan.Translation.X)
+                        {
+                            NewRange = (int)(Box.Translation.X - (Fan.Translation.X + Fan.Scale.X));
+                        }
+                    }
+                    if (Direction == 2)
+                    {
+                        if (Math.Abs(Fan.Translation.X - Box.Translation.X) < 50 && Box.Translation.Y > Fan.Translation.Y)
+                        {
+                            NewRange = (int)(Box.Translation.Y - (Fan.Translation.Y + Fan.Scale.Y));
+                        }
+                    }
+                    if (Direction == 3)
+                    {
+                        if (Math.Abs(Fan.Translation.Y - Box.Translation.Y) < 50 && Box.Translation.X < Fan.Translation.X)
+                        {
+                            NewRange = (int)(Fan.Translation.X - (Box.Translation.X + Box.Scale.X));
+                        }
+                    }
+                    if (NewRange < Range) Range = NewRange;
+                }
+                if(Range != (int)Fans[i].Data["Range"])
+                {
+                    FanGlow Glow = (FanGlow)CScene.Data[Fans[i].ID+"Glow"];
+                    Fans[i].Data["Range"] = Range;
+                    Glow.Update();
                 }
             }
         }
