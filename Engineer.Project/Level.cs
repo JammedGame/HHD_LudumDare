@@ -35,7 +35,7 @@ namespace Engineer.Project
                 GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 6, 11));
                 GenerateLever(Scene, 11, 8, GenerateDoor(Scene, 7, 6));
                 GenerateLever(Scene, 5, 11, GenerateDoor(Scene, 8, 7));
-                GeneratePresurePlate(Scene, 9, 4, GenerateFan(Scene, 4, 2, 1, 7));
+                GenerateFan(Scene, 4, 2, 1, 7);
                 GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
             }
