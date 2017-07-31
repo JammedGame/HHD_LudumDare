@@ -19,6 +19,7 @@ namespace Engineer.Engine
         public TileCollection MapCollection { get => _MapCollection; set => _MapCollection = value; }
         public TileMap() : base()
         {
+            this.IsMap = true;
             this._FieldSize = 100;
             this._MapCollection = new TileCollection();
         }
@@ -48,10 +49,10 @@ namespace Engineer.Engine
                     if (this._MapMatrix[i, j] >= this._MapCollection.TileImages.Count) return false;
                 }
             }
-            this.GenerateMap();
+            //this.GenerateMap();
             return true;
         }
-        private void GenerateMap()
+        public void GenerateMap()
         {
             this.Scale = new Mathematics.Vertex(this._MapSize.X * this._FieldSize, this._MapSize.Y * this._FieldSize, 1);
             Bitmap B = new Bitmap(this._MapSize.X * this._FieldSize, this._MapSize.Y * this._FieldSize);

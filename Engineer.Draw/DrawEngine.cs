@@ -78,8 +78,16 @@ namespace Engineer.Draw
             {
                 if (CurrentScene.Objects[i].Type == SceneObjectType.DrawnSceneObject)
                 {
-                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) this._CurrentRenderer.PreLoad2DMaterial(CurrentScene.Objects[i].Visual.ID, ((Sprite)CurrentScene.Objects[i].Visual).CollectiveLists()); 
-                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile) this._CurrentRenderer.PreLoad2DMaterial(((Tile)CurrentScene.Objects[i].Visual).Collection.ID, ((Tile)CurrentScene.Objects[i].Visual).Collection.TileImages);
+                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Sprite) this._CurrentRenderer.PreLoad2DMaterial(CurrentScene.Objects[i].Visual.ID, ((Sprite)CurrentScene.Objects[i].Visual).CollectiveLists());
+                    if (CurrentScene.Objects[i].Visual.Type == DrawObjectType.Tile)
+                    {
+                        if(((Tile)CurrentScene.Objects[i].Visual).IsMap)
+                        {
+                            TileMap Map = (TileMap)CurrentScene.Objects[i].Visual;
+                            Map.GenerateMap();
+                        }
+                        this._CurrentRenderer.PreLoad2DMaterial(((Tile)CurrentScene.Objects[i].Visual).Collection.ID, ((Tile)CurrentScene.Objects[i].Visual).Collection.TileImages);
+                    }
                 }
                 this._CurrentWorker.ReportProgress((i * 100) / CurrentScene.Objects.Count);
             }

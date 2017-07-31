@@ -13,6 +13,7 @@ namespace Engineer.Engine
     public class Tile : DrawObject
     {
         private bool _Modified;
+        private bool _IsMap;
         private int _CurrentIndex;
         private Color _Paint;
         private TileCollection _Collection;
@@ -33,8 +34,10 @@ namespace Engineer.Engine
         [XmlIgnore]
         public TileCollection Collection { get => _Collection; set => _Collection = value; }
         public List<Tile> SubTiles { get => _SubTiles; set => _SubTiles = value; }
+        public bool IsMap { get => _IsMap; set => _IsMap = value; }
         public Tile() : base()
         {
+            this._IsMap = false;
             this._CurrentIndex = 0;
             this.Type = DrawObjectType.Tile;
             this.Scale = new Mathematics.Vertex(100, 100, 1);
@@ -43,6 +46,7 @@ namespace Engineer.Engine
         }
         public Tile(Tile T) : base(T)
         {
+            this._IsMap = T._IsMap;
             this._CurrentIndex = 0;
             this.Collection = new TileCollection(T.Collection);
             this.Collection = new TileCollection(T.Collection);
