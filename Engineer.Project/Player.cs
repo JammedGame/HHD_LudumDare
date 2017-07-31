@@ -36,8 +36,8 @@ namespace Engineer.Project
         
         public Player(Scene2D CScene)
         {
-            this.Scene = CScene;            
-
+            this.Scene = CScene;
+            _Heat = _MaxHeat = 100;
             //DrawnSceneObject Player = GameScene.CreateStaticTile("Player"+id++, ResourceManager.Images["kuglica_01"], new Vertex(100*id, 100 * id, 0), new Vertex(100 , 100 , 0), true);
             SpriteSet Player = new SpriteSet("Player" + id);
             Player.Sprite.Add(ResourceManager.Images["kuglica_01"]);
