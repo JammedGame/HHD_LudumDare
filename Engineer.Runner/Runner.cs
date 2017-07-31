@@ -161,6 +161,11 @@ namespace Engineer.Runner
             if (ClearedScene == null) return;
             while (!this.ClearSceneBackground(ClearedScene)) ;
         }
+        public void Collect()
+        {
+            GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+            System.GC.Collect();
+        }
         public void ClearScene(string SceneName)
         {
             for (int i = 0; i < this._CurrentGame.Scenes.Count; i++)

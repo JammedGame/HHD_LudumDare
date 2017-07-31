@@ -103,6 +103,8 @@ namespace Engineer.Project
             {
                 OldGame = (GameScene)CurrentGame.Data["GameScene"];
                 CurrentGame.Scenes.Remove(OldGame);
+                Runner.ClearScene("GameScene");
+                Runner.Collect();
             }
             GameScene NewGame = new GameScene();
             NewGame.Data["Game"] = CurrentGame;

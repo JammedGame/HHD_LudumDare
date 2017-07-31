@@ -43,6 +43,7 @@ namespace Engineer.Draw
             get
             {
                 if (_ActiveShaderID == "") return null;
+                if (!_Shader.ContainsKey(_ActiveShaderID)) return null;
                 return _Shader[_ActiveShaderID];
             }
         }
