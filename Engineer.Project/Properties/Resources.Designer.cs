@@ -103,6 +103,16 @@ namespace Engineer.Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fan0 {
+            get {
+                object obj = ResourceManager.GetObject("fan0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fan1 {
             get {
                 object obj = ResourceManager.GetObject("fan1", resourceCulture);
@@ -136,16 +146,6 @@ namespace Engineer.Project.Properties {
         internal static System.Drawing.Bitmap fan4 {
             get {
                 object obj = ResourceManager.GetObject("fan4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fan5 {
-            get {
-                object obj = ResourceManager.GetObject("fan5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

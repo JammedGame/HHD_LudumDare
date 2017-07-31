@@ -44,6 +44,7 @@ namespace Engineer.Project
                 GenerateLever(Scene, 5, 11);
                 GenerateBox(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
+                GenerateFan(Scene,4,2);
             }
         }
         public static void GenerateBox(Scene2D Scene, int XLocation, int YLocation)
@@ -130,23 +131,20 @@ namespace Engineer.Project
         }
         public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation)
         {
-            SpriteSet FireSpriteSet = new SpriteSet("Fan");
-            for(int i=0;i<)
-            FireSpriteSet.Sprite.Add(ResourceManager.Images["fan"]);
+            SpriteSet FanSpriteSet = new SpriteSet("Fan");
+            for(int i = 0; i < 5; i++) { 
+            FanSpriteSet.Sprite.Add(ResourceManager.Images["fan"+i]);
+            }
+            Sprite FanSprite = new Sprite();
+            FanSprite.SpriteSets.Add(FanSpriteSet);
+
+            DrawnSceneObject Fan = new DrawnSceneObject("Fan", FanSprite);
+            Fan.Visual.Scale = new Vertex(100, 100, 0);
+            Fan.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
             
-            Sprite FireSprite = new Sprite();
-            FireSprite.SpriteSets.Add(FireSpriteSet);
+            Fan.Data["Collision"] = Collision2DType.Rectangular;
 
-            DrawnSceneObject Fire = new DrawnSceneObject("Fire", FireSprite);
-            Fire.Visual.Scale = new Vertex(100, 100, 0);
-            Fire.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
-
-            //Box.Data["P1Coll"] = new CollisionModel();
-            //Box.Data["P2Coll"] = new CollisionModel();            
-            Fire.Data["HeatSource"] = true;
-            Fire.Data["Collision"] = Collision2DType.Rectangular;
-
-            Scene.AddSceneObject(Fire);
+            Scene.AddSceneObject(Fan);
         }
     }
 }      
