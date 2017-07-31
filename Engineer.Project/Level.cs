@@ -122,6 +122,24 @@ namespace Engineer.Project
             DrawnSceneObject Fire = new DrawnSceneObject("Fire", FireSprite);
             Fire.Visual.Scale = new Vertex(100, 100, 0);
             Fire.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
+                                
+            Fire.Data["HeatSource"] = true;
+            Fire.Data["Collision"] = Collision2DType.Rectangular;
+
+            Scene.AddSceneObject(Fire);
+        }
+        public static void GenerateFan(Scene2D Scene, int XLocation, int YLocation)
+        {
+            SpriteSet FireSpriteSet = new SpriteSet("Fan");
+            for(int i=0;i<)
+            FireSpriteSet.Sprite.Add(ResourceManager.Images["fan"]);
+            
+            Sprite FireSprite = new Sprite();
+            FireSprite.SpriteSets.Add(FireSpriteSet);
+
+            DrawnSceneObject Fire = new DrawnSceneObject("Fire", FireSprite);
+            Fire.Visual.Scale = new Vertex(100, 100, 0);
+            Fire.Visual.Translation = new Vertex(XLocation * 100, YLocation * 100, 0);
 
             //Box.Data["P1Coll"] = new CollisionModel();
             //Box.Data["P2Coll"] = new CollisionModel();            
@@ -130,13 +148,5 @@ namespace Engineer.Project
 
             Scene.AddSceneObject(Fire);
         }
-
-        // Privremeno da ga napravimo
-        /*public static void GenerateFire(Scene2D Scene, int XLocation, int YLocation)
-        {
-            DrawnSceneObject Fire = GameHelpers.createSprite("progress", new Vertex(600, 600, 0), new Vertex(100, 100, 0));
-            Fire.Data["HeatSource"] = true;
-            Scene.AddSceneObject(Fire);
-        }*/
     }
 }      
