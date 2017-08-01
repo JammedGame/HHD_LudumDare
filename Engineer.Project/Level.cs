@@ -25,24 +25,6 @@ namespace Engineer.Project
             fanID = 0;
 
             LastGen = Index;
-            if (Index == 0)
-            {
-                TiledImporter.Import(Scene, "Data/TestLevel.tmx", 15, 15);
-                Players[0].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 10 * 100 + 25, 0);
-                Players[1].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 11 * 100 + 25, 0);
-                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
-                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
-                Scene.AddSceneObject(Players[0]);
-                Scene.AddSceneObject(Players[1]);
-
-                GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 6, 11));
-                GenerateLever(Scene, 11, 8, GenerateDoor(Scene, 7, 6));
-                GenerateLever(Scene, 5, 11, GenerateDoor(Scene, 8, 7));
-                GenerateFan(Scene, 4, 2, 1, 7);
-                GenerateHeater(Scene, 10, 7);
-                GenerateFire(Scene, 11, 10);
-                GenerateExit(Scene, 11, 2);
-            }
             if (Index == 1)
             {
                 TiledImporter.Import(Scene, "Data/Level01_D.tmx", 10, 10);
@@ -116,6 +98,44 @@ namespace Engineer.Project
                 GenerateBox(Scene, 2, 3);
                 GeneratePresurePlate(Scene, 2, 7, GenerateDoor(Scene, 2, 5));
                 GenerateExit(Scene, 7, 3);
+            }
+            if (Index == 6)
+            {
+                TiledImporter.Import(Scene, "Data/Level06_D.tmx", 16, 16);
+                Players[0].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 5 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(1 * 100 + 25, 6 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+                Players[0].MaxHeat = 800;
+                Players[0].Heat = 800;
+                Players[1].MaxHeat = 800;
+                Players[1].Heat = 800;
+                GenerateFire(Scene, 7, 8);
+                GenerateFire(Scene, 7, 3);
+                GeneratePresurePlate(Scene, 5, 7, GenerateFan(Scene, 5, 5, 0, 3));
+                GeneratePresurePlate(Scene, 8, 3, GenerateFan(Scene, 8, 5, 2, 4));
+                GeneratePresurePlate(Scene, 11, 7, GenerateFan(Scene, 11, 5, 0, 3));
+                GenerateExit(Scene, 15, 5);
+            }
+            if (Index == 7)
+            {
+                TiledImporter.Import(Scene, "Data/Level07_D.tmx", 15, 15);
+                Players[0].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 10 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(10 * 100 + 25, 11 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+
+                GenerateLever(Scene, 11, 11, GenerateDoor(Scene, 6, 11));
+                GenerateLever(Scene, 11, 8, GenerateDoor(Scene, 7, 6));
+                GenerateLever(Scene, 5, 11, GenerateDoor(Scene, 8, 7));
+                GenerateFan(Scene, 4, 2, 1, 7);
+                GenerateHeater(Scene, 10, 7);
+                GenerateFire(Scene, 11, 10);
+                GenerateExit(Scene, 11, 2);
             }
 
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];

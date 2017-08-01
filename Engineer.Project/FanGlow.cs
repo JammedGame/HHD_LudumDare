@@ -29,7 +29,7 @@ namespace Engineer.Project
             Sprite Glow = (Sprite)this.Visual;
             if (Direction == 0)
             {
-                Glow.Translation = new Vertex(XLocation, YLocation - Range - 100, 0);
+                Glow.Translation = new Vertex(XLocation, YLocation - Range, 0);
                 Glow.Scale = new Vertex(100, Range, 1);
             }
             else if (Direction == 1)
