@@ -137,6 +137,20 @@ namespace Engineer.Project
                 GenerateFire(Scene, 11, 10);
                 GenerateExit(Scene, 11, 2);
             }
+            if (Index == 8)
+            {
+                TiledImporter.Import(Scene, "Data/Level08_D.tmx", 20, 20);
+                Players[0].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 5 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 6 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
+                GenerateLever(Scene, 10, 1, GenerateDoor(Scene, 5, 3));
+                GenerateFan(Scene, 15, 1, 3, 5);
+                GenerateBox(Scene, 11, 7);
+                GenerateExit(Scene, 4, 1);
+            }
 
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
             TileCollection SpaceCollection = new TileCollection(ResourceManager.Images["press_space"]);

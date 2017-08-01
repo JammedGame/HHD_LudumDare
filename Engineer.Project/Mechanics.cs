@@ -176,7 +176,7 @@ namespace Engineer.Project
             if (Collision2D.Check(Player1.Visual.Translation, Player1.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Rectangular) &&
                 Collision2D.Check(Player2.Visual.Translation, Player2.Visual.Scale, Exit.Visual.Translation, Exit.Visual.Scale, Collision2DType.Radius))
             {
-                if (Level.LastGen + 1 < 6 && PlayerProgress.Read() < Level.LastGen + 1)
+                if (Level.LastGen + 1 < 7 && PlayerProgress.Read() < Level.LastGen + 1)
                 {
                     PlayerProgress.Write(Level.LastGen + 1);
                     Picker.Max = Level.LastGen + 1;
