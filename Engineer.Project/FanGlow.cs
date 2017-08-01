@@ -44,7 +44,7 @@ namespace Engineer.Project
             }
             else if (Direction == 3)
             {
-                Glow.Translation = new Vertex(XLocation - Range - 100, YLocation, 0);
+                Glow.Translation = new Vertex(XLocation - Range, YLocation, 0);
                 Glow.Scale = new Vertex(Range, 100, 1);
             }
         }
