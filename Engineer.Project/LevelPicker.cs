@@ -26,6 +26,7 @@ namespace Engineer.Project
             Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
             Levels.TileImages.Add(ResourceManager.Images["lvl3"]);
             Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
+            Levels.TileImages.Add(ResourceManager.Images["lvl1"]);
             TileCollection BackForth = new TileCollection();
             BackForth.TileImages.Add(ResourceManager.Images["left"]);
             BackForth.TileImages.Add(ResourceManager.Images["right"]);
