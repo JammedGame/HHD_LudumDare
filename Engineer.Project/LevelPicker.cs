@@ -22,14 +22,13 @@ namespace Engineer.Project
             TileCollection Buttons = new TileCollection();
             Buttons.TileImages.Add(ResourceManager.Images["back_button"]);
             TileCollection Levels = new TileCollection();
-            Levels.TileImages.Add(ResourceManager.Images["lvl1"]);
+            Levels.TileImages.Add(ResourceManager.Images["level_01"]);
+            Levels.TileImages.Add(ResourceManager.Images["level_02"]);
+            Levels.TileImages.Add(ResourceManager.Images["level_03"]);
+            Levels.TileImages.Add(ResourceManager.Images["level_04"]);
+            Levels.TileImages.Add(ResourceManager.Images["level_05"]);
             Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
             Levels.TileImages.Add(ResourceManager.Images["lvl3"]);
-            Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
-            Levels.TileImages.Add(ResourceManager.Images["lvl1"]);
-            Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
-            Levels.TileImages.Add(ResourceManager.Images["lvl3"]);
-            Levels.TileImages.Add(ResourceManager.Images["lvl2"]);
             TileCollection BackForth = new TileCollection();
             BackForth.TileImages.Add(ResourceManager.Images["left"]);
             BackForth.TileImages.Add(ResourceManager.Images["right"]);
@@ -96,6 +95,7 @@ namespace Engineer.Project
         private void LeftClick(object sender, EventArguments e)
         {
             Tile Left = (Tile)((DrawnSceneObject)this.Data["Left"]).Visual;
+            if (!Left.Active) return;
             Tile Right = (Tile)((DrawnSceneObject)this.Data["Right"]).Visual;
             Tile Level = (Tile)((DrawnSceneObject)this.Data["Level"]).Visual;
             Level.SetIndex(Level.Index() - 1);
@@ -109,6 +109,7 @@ namespace Engineer.Project
         {
             Tile Left = (Tile)((DrawnSceneObject)this.Data["Left"]).Visual;
             Tile Right = (Tile)((DrawnSceneObject)this.Data["Right"]).Visual;
+            if (!Right.Active) return;
             Tile Level = (Tile)((DrawnSceneObject)this.Data["Level"]).Visual;
             Level.SetIndex(Level.Index() + 1);
             if (Level.Index() == 0) Left.Active = false;
@@ -133,7 +134,7 @@ namespace Engineer.Project
             GameScene NewGame = new GameScene();
             NewGame.Data["Game"] = CurrentGame;
             NewGame.Data["Runner"] = Runner;
-            NewGame.Data["DesiredLevel"] = Level.Index();
+            NewGame.Data["DesiredLevel"] = Level.Index() + 1;
             NewGame.Init();
             LoadingScene Loading;
             if (!CurrentGame.Data.ContainsKey("LoadingScene"))
