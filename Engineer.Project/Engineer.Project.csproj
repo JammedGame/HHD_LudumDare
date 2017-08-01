@@ -357,5 +357,35 @@
   <ItemGroup>
     <None Include="Resources\level_05.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level_06.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

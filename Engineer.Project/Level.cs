@@ -37,6 +37,7 @@ namespace Engineer.Project
                                 
                 GenerateFire(Scene, 4, 3);
                 GenerateExit(Scene, 5, 7);
+                GenerateDescrip(Scene, 1);
             }
             if (Index == 2)
             {
@@ -51,6 +52,7 @@ namespace Engineer.Project
                 GenerateFire(Scene, 3, 5);
                 GenerateCold(Scene,10,9);
                 GenerateExit(Scene, 12, 7);
+                GenerateDescrip(Scene, 2);
             }
             if (Index == 3)
             {
@@ -63,6 +65,7 @@ namespace Engineer.Project
                 Scene.AddSceneObject(Players[1]);
                 GenerateBox(Scene, 4, 5);
                 GenerateExit(Scene, 7, 4);
+                GenerateDescrip(Scene, 3);
             }
             if (Index == 4)
             {
@@ -118,6 +121,7 @@ namespace Engineer.Project
                 GeneratePresurePlate(Scene, 8, 3, GenerateFan(Scene, 8, 5, 2, 4));
                 GeneratePresurePlate(Scene, 11, 7, GenerateFan(Scene, 11, 5, 0, 3));
                 GenerateExit(Scene, 15, 5);
+                GenerateDescrip(Scene, 4);
             }
             if (Index == 7)
             {
@@ -136,6 +140,7 @@ namespace Engineer.Project
                 GenerateHeater(Scene, 10, 7);
                 GenerateFire(Scene, 11, 10);
                 GenerateExit(Scene, 11, 2);
+                GenerateDescrip(Scene, 5);
             }
             if (Index == 8)
             {
@@ -146,10 +151,37 @@ namespace Engineer.Project
                 Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
                 Scene.AddSceneObject(Players[0]);
                 Scene.AddSceneObject(Players[1]);
-                GenerateLever(Scene, 10, 1, GenerateDoor(Scene, 5, 3));
+                GenerateLever(Scene, 10, 1, GenerateDoor(Scene, 4, 3));
                 GenerateFan(Scene, 15, 1, 3, 5);
                 GenerateBox(Scene, 11, 7);
-                GenerateExit(Scene, 4, 1);
+                GenerateExit(Scene, 4, 0);
+            }
+            if (Index == 9)
+            {
+                TiledImporter.Import(Scene, "Data/Level09_D.tmx", 16, 16);
+                Players[0].Visual.Translation = new Mathematics.Vertex(2 * 100 + 25, 12 * 100 + 25, 0);
+                Players[1].Visual.Translation = new Mathematics.Vertex(3 * 100 + 25, 12 * 100 + 25, 0);
+                Players[0].Data["OriginalLocation"] = Players[0].Visual.Translation;
+                Players[1].Data["OriginalLocation"] = Players[1].Visual.Translation;
+
+                Players[0].HeatRange = 150;
+                Players[1].HeatRange = 150;
+
+                Players[0].Heat = Players[0].MaxHeat = 1400;
+                Players[1].Heat = Players[1].MaxHeat = 1400;
+
+
+                GenerateFire(Scene, 3, 8);
+                GenerateFire(Scene, 8, 4);
+                GenerateCold(Scene, 4, 1);
+                GenerateBox(Scene, 12, 6);
+                GenerateExit(Scene, 13, 3);
+                GenerateFan(Scene, 1, 3, 1, 3);
+                GeneratePresurePlate(Scene, 13, 10, GenerateDoor(Scene, 11, 7));
+                GenerateLever(Scene, 1, 1, GenerateDoor(Scene, 11, 3));
+
+                Scene.AddSceneObject(Players[0]);
+                Scene.AddSceneObject(Players[1]);
             }
 
             ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
@@ -354,6 +386,18 @@ namespace Engineer.Project
             Scene.Data[Cold.ID + "Glow"] = GlowDSO;
 
             Scene.AddSceneObject(Cold);
+        }
+        public static void GenerateDescrip(Scene2D Scene, int Index)
+        {
+            ExternRunner Runner = (ExternRunner)Scene.Data["Runner"];
+            TileCollection Collection = new TileCollection(ResourceManager.Images["tutorial_0"+Index]);
+            Tile PressSpace = new Tile();
+            PressSpace.Scale = new Vertex(500, 50, 1);
+            PressSpace.Translation = new Vertex(Runner.Width - 550, Runner.Height - 150, 0);
+            PressSpace.Collection = Collection;
+            PressSpace.Fixed = true;
+            DrawnSceneObject SpaceDSO = new DrawnSceneObject("Tutor", PressSpace);
+            Scene.AddSceneObject(SpaceDSO);
         }
         public static void GenerateExit(Scene2D Scene, int XLocation, int YLocation)
         {

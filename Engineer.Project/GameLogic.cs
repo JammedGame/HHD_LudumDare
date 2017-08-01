@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Engineer.Project
 {
@@ -23,6 +24,8 @@ namespace Engineer.Project
             Scene2D Picker = new LevelPicker();
             this._Game.AddScene(Picker);
             this._Runner = new ExternRunner((int)LocalSettings.Window.X, (int)LocalSettings.Window.Y, "Dissipate");
+            this._Runner.WindowBorder = OpenTK.WindowBorder.Fixed;
+            //this._Runner = new ExternRunner(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, "Tekillah!");
             Menu.Data["Game"] = this._Game;
             Menu.Data["Runner"] = this._Runner;
             Picker.Data["Game"] = this._Game;
